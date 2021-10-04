@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Art/Images/charactersheet2.png" type="Texture" id=1]
-[ext_resource path="res://Player.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 12.5875
@@ -103,5 +103,4 @@ shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 14 )
-animation = "walkR"
-playing = true
+animation = "walkD"

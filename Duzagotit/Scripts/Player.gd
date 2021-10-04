@@ -47,7 +47,7 @@ func _process(delta):
 	elif velocity.y > 0:
 		$AnimatedSprite.animation = "walkD"
 
-func _on_Player_body_entered(_body ):
+func _on_Player_body_entered( _body ):
 	hide()
 	emit_signal("hit")
 	$CollisionShape2D.set_deferred("disabled", true)
