@@ -1,0 +1,89 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Art/Calibri.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Art/CalibriSmall.tres" type="DynamicFont" id=2]
+
+[node name="Question" type="CanvasLayer"]
+
+[node name="QuestionTitle" type="Label" parent="."]
+anchor_right = 1.0
+margin_left = 150.0
+margin_top = 150.0
+margin_right = -150.0
+margin_bottom = 400.0
+custom_fonts/font = ExtResource( 1 )
+text = "Waarom mag een kapotte ovenschaal niet bij het oude glas?"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="B1" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -910.0
+margin_top = -600.0
+margin_right = 910.0
+margin_bottom = -500.0
+custom_fonts/font = ExtResource( 2 )
+toggle_mode = true
+text = "Omdat het geen verpakking is en omdat glas op een hogere temperatuur smelt dan verpakkingsglas."
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="B2" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -910.0
+margin_top = -450.0
+margin_right = 910.0
+margin_bottom = -350.0
+custom_fonts/font = ExtResource( 2 )
+toggle_mode = true
+text = "Omdat het geen verpakking is en omdat glas op een hogere temperatuur smelt dan verpakkingsglas."
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="B3" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -910.0
+margin_top = -300.0
+margin_right = 910.0
+margin_bottom = -200.0
+custom_fonts/font = ExtResource( 2 )
+toggle_mode = true
+text = "Omdat het geen verpakking is en omdat glas op een hogere temperatuur smelt dan verpakkingsglas."
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="B4" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -910.0
+margin_top = -150.0
+margin_right = 910.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 2 )
+toggle_mode = true
+text = "Omdat het geen verpakking is en omdat glas op een hogere temperatuur smelt dan verpakkingsglas."
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

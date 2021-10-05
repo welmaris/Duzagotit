@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Art/Images/questionbubble.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/VraagBubbel.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/QuestionBubble.gd" type="Script" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 56.3047
 height = 30.2078
 
-[node name="VraagBubbel" type="Area2D"]
+[node name="QuestionBubble" type="Area2D"]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -19,3 +19,5 @@ texture = ExtResource( 1 )
 position = Vector2( 758.365, 468.749 )
 rotation = 1.5708
 shape = SubResource( 1 )
+
+[connection signal="input_event" from="." to="." method="_on_VraagBubbel_input_event"]

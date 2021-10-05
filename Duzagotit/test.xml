@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<categories>
+	<waste>
+		<questionunit>
+			<question>
+				Waarom mag een kapotte ovenschaal niet bij het oude glas?
+			</question>
+			<answer>
+				Omdat hij niet door het gaatje in de container past.
+			</asnwer>
+			<answercorrect>
+				Omdat het geen verpakking is en omdat glas op een hogere temperatuur smelt dan verpakkingsglas.
+			</answer>
+			<answer>
+				Omdat het glas van een ovenschaal niet te recyclen is.
+			</answer>
+		</questionunit>
+		<questionunit>
+			<question>
+				Hoelang duurt het voordat een plastic fles is verteerd?
+			</question>
+			<answer>
+				Ongeveer 50 jaar.
+			</asnwer>
+			<answercorrect>
+				Oneindig lang.
+			</answer>
+			<answer>
+				Ongeveer 100 jaar
+			</answer>
+		</questionunit>
+	</waste>
+</categories>
