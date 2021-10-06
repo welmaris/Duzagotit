@@ -7,7 +7,7 @@
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 1608, 1024, 0, 0, 0, 0, 352, 1024 )
+"points": PoolVector2Array( 0, 0, 0, 0, 1608, 1024, 0, 0, 0, 0, 980.452, 1236.8, 0, 0, 0, 0, 352, 1024 )
 }
 
 [node name="Main" type="Node"]
@@ -22,10 +22,11 @@ wait_time = 2.0
 autostart = true
 
 [node name="Path2D" type="Path2D" parent="."]
+position = Vector2( -42, -534 )
 curve = SubResource( 1 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 position = Vector2( 1608, 1024 )
-rotation = 3.14159
+rotation = 2.81459
 
 [connection signal="timeout" from="QuestionSpawnTimer" to="." method="_on_QuestionSpawnTimer_timeout"]
