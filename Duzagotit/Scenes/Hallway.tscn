@@ -5,6 +5,6 @@
 [node name="Hallway" type="Node2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 1065.53, 699.254 )
+position = Vector2( 401.952, 380.546 )
 scale = Vector2( 0.05, 0.25 )
 texture = ExtResource( 1 )

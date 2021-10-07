@@ -18,7 +18,7 @@ QuestionBubble = ExtResource( 2 )
 Question = ExtResource( 4 )
 
 [node name="House" parent="." instance=ExtResource( 5 )]
-position = Vector2( -413.777, -383.557 )
+position = Vector2( 396.941, 149.2 )
 scale = Vector2( 1.25, 1.25 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
