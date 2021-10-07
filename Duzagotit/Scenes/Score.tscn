@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://fonts/architect-s-daughter/ArchitectsDaughter32.tres" type="DynamicFont" id=1]
+
+[node name="Panel" type="Panel"]
+margin_right = 100.0
+margin_bottom = 100.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.2649
+margin_right = -10.0
+margin_bottom = -9.73514
+input_pass_on_modal_close_click = false
+custom_fonts/font = ExtResource( 1 )
+text = "20"
+align = 1
+valign = 1
+percent_visible = -0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
