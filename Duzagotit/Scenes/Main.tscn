@@ -10,7 +10,7 @@
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 1608, 1024, 0, 0, 0, 0, 980.452, 1236.8, 0, 0, 0, 0, 352, 1024 )
+"points": PoolVector2Array( 0, 0, 0, 0, 1623.02, 704.733, 0, 0, 0, 0, 996.287, 927.488, 0, 0, 0, 0, 369.555, 682.08 )
 }
 
 [node name="Main" type="Node"]
@@ -26,19 +26,27 @@ scale = Vector2( 1.25, 1.25 )
 position = Vector2( 292.05, 281.781 )
 
 [node name="QuestionSpawnTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 5.0
 autostart = true
 
 [node name="Path2D" type="Path2D" parent="."]
-position = Vector2( -42, -534 )
+position = Vector2( -47.1302, -29.344 )
 curve = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+<<<<<<< Updated upstream
 position = Vector2( 1608, 1024 )
 rotation = 2.8146
 
 [node name="Furniture" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1018.69, 170.014 )
 [node name="Panel" parent="." instance=ExtResource( 6 )]
+=======
+position = Vector2( 1615.55, 714.409 )
+rotation = 2.81459
+>>>>>>> Stashed changes
 
 [connection signal="timeout" from="QuestionSpawnTimer" to="." method="_on_QuestionSpawnTimer_timeout"]
