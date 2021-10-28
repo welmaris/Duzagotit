@@ -24,4 +24,5 @@ position = Vector2( 4.56531, 24.5314 )
 rotation = 1.5708
 shape = SubResource( 1 )
 
+[connection signal="area_entered" from="." to="." method="_on_Click_and_Drag_area_entered"]
 [connection signal="input_event" from="." to="." method="_on_Click_input_event"]
