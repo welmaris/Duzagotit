@@ -4,8 +4,11 @@
 [ext_resource path="res://Scenes/QuestionBubble.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Question.tscn" type="PackedScene" id=4]
+<<<<<<< Updated upstream
 [ext_resource path="res://Scenes/House.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Score.tscn" type="PackedScene" id=6]
+=======
+>>>>>>> Stashed changes
 
 [sub_resource type="Curve2D" id=1]
 _data = {
