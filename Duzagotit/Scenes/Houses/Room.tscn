@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/Houses/partials/Floor.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Houses/partials/Back_Wall.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Houses/partials/Inner_Wall.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Houses/partials/Left_Outer_Wall.tscn" type="PackedScene" id=4]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="BackWall" parent="." instance=ExtResource( 2 )]
+
+[node name="Floor" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 62 )
+
+[node name="InnerWall" parent="." instance=ExtResource( 3 )]
+position = Vector2( 140, 48 )
+
+[node name="OuterWall" parent="." instance=ExtResource( 4 )]
+position = Vector2( -140, 128 )

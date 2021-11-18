@@ -22,7 +22,6 @@ func _on_QuestionSpawnTimer_timeout(): # spawns a question bubble for the player
 	QB.connect("_on_Click_Question", self, "_on_Click_Question")
 	add_child(QB)
 	QB.position = $Path2D/PathFollow2D.position
-	print(QB.position)
 
 func answer_pressed(buttonint):
 	var correct_style = StyleBoxFlat.new()

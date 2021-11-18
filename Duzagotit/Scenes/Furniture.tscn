@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Art/Images/furniture_tileset.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Furniture.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 53.0995, 41.845 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 35.5766, 25.7364 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 5, 69, 73, 60 )
+
+[node name="Furniture" type="StaticBody2D"]
+script = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 35.1905, 32.5178 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 35.3409, 33.7818 )
+shape = SubResource( 2 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 73.0
+margin_bottom = 60.0
+texture = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]
