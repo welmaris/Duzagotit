@@ -5,7 +5,7 @@
 [ext_resource path="res://Art/Images/wooden_stairs-ns.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 46, 8 )
+extents = Vector2( 49, 8 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 160, 32 )
@@ -23,6 +23,7 @@ extents = Vector2( 4, 80 )
 position = Vector2( 167, 267 )
 
 [node name="Huis" type="Node2D" parent="."]
+position = Vector2( 371, 83 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -117,7 +118,7 @@ region_enabled = true
 region_rect = Rect2( 0, 624, 88, 16 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Huis/LowerHallway/Floor/LowerLine"]
-position = Vector2( -112, 182 )
+position = Vector2( -112, 183 )
 shape = SubResource( 1 )
 
 [node name="BackWall" type="StaticBody2D" parent="Huis/LowerHallway"]
@@ -136,7 +137,7 @@ region_enabled = true
 region_rect = Rect2( 0, 544, 96, 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Huis/LowerHallway/BackWall"]
-position = Vector2( -119, -25 )
+position = Vector2( 36, -13 )
 shape = SubResource( 2 )
 
 [node name="Stairs" type="Node2D" parent="Huis/LowerHallway"]
@@ -249,7 +250,7 @@ region_enabled = true
 region_rect = Rect2( 0, 624, 88, 16 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Huis/UpperHallway/Floor/LowerLine"]
-position = Vector2( -97, 182 )
+position = Vector2( -55, 185 )
 shape = SubResource( 1 )
 
 [node name="BackWall" type="StaticBody2D" parent="Huis/UpperHallway"]
@@ -325,7 +326,7 @@ region_enabled = true
 region_rect = Rect2( 8, 544, 88, 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Huis/Room1/BackWall"]
-position = Vector2( 0, -23 )
+position = Vector2( -2, -9 )
 shape = SubResource( 2 )
 
 [node name="OuterWall" type="StaticBody2D" parent="Huis/Room1"]

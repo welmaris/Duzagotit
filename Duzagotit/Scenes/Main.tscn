@@ -1,13 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/QuestionBubble.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Question.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Houses/Furniture.tscn" type="PackedScene" id=5]
-[ext_resource path="res://House.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Score.tscn" type="PackedScene" id=6]
-
+[ext_resource path="res://Scenes/Houses/testingTilemaps/TilemapFloor.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -18,8 +15,6 @@ _data = {
 script = ExtResource( 1 )
 QuestionBubble = ExtResource( 2 )
 Question = ExtResource( 4 )
-
-[node name="Player" parent="." instance=ExtResource( 3 )]
 
 [node name="QuestionSpawnTimer" type="Timer" parent="."]
 wait_time = 5.0
@@ -35,5 +30,10 @@ __meta__ = {
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 position = Vector2( 1623.02, 704.733 )
 rotation = 2.80005
+
+[node name="Node2D" parent="." instance=ExtResource( 5 )]
+
+[node name="KinematicBody2D" parent="." instance=ExtResource( 3 )]
+position = Vector2( 315.378, 413.377 )
 
 [connection signal="timeout" from="QuestionSpawnTimer" to="." method="_on_QuestionSpawnTimer_timeout"]
