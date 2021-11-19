@@ -18,7 +18,7 @@ func start(pos):
 
 func _process(delta):
 	var velocity = Vector2()
-	if !get_parent().question_is_showing:
+	if !get_parent().question_is_showing and !get_parent().minigame_is_showing:
 		if Input.is_action_pressed("move_right"):
 		   velocity.x += 1
 		if Input.is_action_pressed("move_left"):
@@ -47,7 +47,7 @@ func _process(delta):
 		elif velocity.y > 0:
 			$AnimatedSprite.animation = "walkD"
 
-func _on_Player_body_entered( _body ):
-	hide()
-	emit_signal("hit")
-	$CollisionShape2D.set_deferred("disabled", true)
+#func _on_Player_body_entered( _body ):
+#	hide()
+#	emit_signal("hit")
+#	$CollisionShape2D.set_deferred("disabled", true)

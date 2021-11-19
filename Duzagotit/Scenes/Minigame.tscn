@@ -29,6 +29,7 @@ position = Vector2( 407.161, 256.054 )
 rotation = -0.0940539
 
 [node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0.498039 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -30.6523
@@ -41,9 +42,3 @@ expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Click_and_Drag" parent="." instance=ExtResource( 2 )]
-z_index = 5
-
-[connection signal="correct_waste_disposal" from="Click_and_Drag" to="." method="_on_Click_and_Drag_correct_waste_disposal"]
-[connection signal="incorrect_waste_disposal" from="Click_and_Drag" to="." method="_on_Click_and_Drag_incorrect_waste_disposal"]

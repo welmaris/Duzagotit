@@ -2,11 +2,13 @@ extends Node
 
 export (PackedScene) var QuestionBubble
 export (PackedScene) var Question
+export (PackedScene) var Minigame
 var score
 var questionstatus = {}
 var current_question_correct_answers = null
 var QuestionScene
 var question_is_showing = false
+var minigame_is_showing = false
 
 func new_game():
 	$Player.start(Vector2(400,400))
@@ -55,6 +57,9 @@ func _on_answer_show_timeout():
 
 func _on_Click_Question(category):
 	question_is_showing = true
+	for child in self.get_children(): 
+		if (child.has_method("_on_VisibilityNotifier2D_screen_exited")): 
+			child.queue_free()
 	var questionarray = get_New_Question(category) #TODO : make it so only new questions get shown
 	$QuestionSpawnTimer.stop()
 	#summon question scene
@@ -69,7 +74,7 @@ func _on_Click_Question(category):
 	var simplequestionarray
 	simplequestionarray = questionarray["answer"]
 	simplequestionarray.insert(correctanswerindex,questionarray["answercorrect"])
-	print(simplequestionarray)
+	#print(simplequestionarray)
 	QuestionScene.get_node("QuestionTitle").text = questionarray["question"]   #display the question and answers
 	QuestionScene.get_node("B0").text = simplequestionarray[0]
 	QuestionScene.get_node("B1").text = simplequestionarray[1]
@@ -82,6 +87,17 @@ func _on_Click_Question(category):
 		QuestionScene.get_node("B3").show()
 	else:
 		QuestionScene.get_node("B3").hide()
+
+func _player_interract():
+	minigame_is_showing = true
+	for child in self.get_children(): 
+		if (child.has_method("_on_VisibilityNotifier2D_screen_exited")): 
+			child.queue_free()
+	$QuestionSpawnTimer.stop()
+	var MinigameScene = Minigame.instance()
+	MinigameScene.minigame_name = "recycling_bins"
+	add_child(MinigameScene)
+	
 
 func get_New_Question(category):
 	var questionfile = File.new()
@@ -101,4 +117,6 @@ func get_New_Question(category):
 	
 	
 	return questions[category][questionnumber]
+
+
 
