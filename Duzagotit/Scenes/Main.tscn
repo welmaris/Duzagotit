@@ -4,7 +4,7 @@
 [ext_resource path="res://Scenes/QuestionBubble.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Question.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Houses/testingTilemaps/TilemapFloor.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Houses/House1Inside.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -34,6 +34,6 @@ rotation = 2.80005
 [node name="Node2D" parent="." instance=ExtResource( 5 )]
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 3 )]
-position = Vector2( 315.378, 413.377 )
+position = Vector2( 613.981, 902.948 )
 
 [connection signal="timeout" from="QuestionSpawnTimer" to="." method="_on_QuestionSpawnTimer_timeout"]
