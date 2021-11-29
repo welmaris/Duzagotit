@@ -34,6 +34,6 @@ rotation = 2.80005
 [node name="Node2D" parent="." instance=ExtResource( 5 )]
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 3 )]
-position = Vector2( 613.981, 902.948 )
+position = Vector2( 536.199, 919.918 )
 
 [connection signal="timeout" from="QuestionSpawnTimer" to="." method="_on_QuestionSpawnTimer_timeout"]
