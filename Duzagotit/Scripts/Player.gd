@@ -1,10 +1,10 @@
-extends Area2D
+extends KinematicBody2D
 
 signal hit
 
-export var speed = 400
+export var speed = 200
 var screen_size
-
+var velocity
 
 func _ready():
 	#hide()
@@ -51,3 +51,4 @@ func _process(delta):
 #	hide()
 #	emit_signal("hit")
 #	$CollisionShape2D.set_deferred("disabled", true)
+
