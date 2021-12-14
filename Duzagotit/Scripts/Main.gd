@@ -11,7 +11,7 @@ var question_is_showing = false
 var minigame_is_showing = false
 
 func new_game():
-	$Player.start(Vector2(400,400))
+	$Player.start(Vector2(900,400))
 
 
 func _ready():

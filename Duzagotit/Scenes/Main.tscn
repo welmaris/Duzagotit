@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/QuestionBubble.tscn" type="PackedScene" id=2]
@@ -34,11 +34,13 @@ __meta__ = {
 position = Vector2( 1623.02, 704.733 )
 rotation = 2.80005
 
-[node name="Furniture" parent="." instance=ExtResource( 5 )]
-position = Vector2( 845.214, 272.758 )
-[node name="Node2D" parent="." instance=ExtResource( 7 )]
+[node name="House" parent="." instance=ExtResource( 7 )]
 
-[node name="KinematicBody2D" parent="." instance=ExtResource( 3 )]
+[node name="Furniture" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1306.7, 873.224 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 536.199, 919.918 )
 
 [connection signal="timeout" from="QuestionSpawnTimer" to="." method="_on_QuestionSpawnTimer_timeout"]

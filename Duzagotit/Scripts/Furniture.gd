@@ -27,9 +27,8 @@ func _process(_delta):
 				print("player just clicked: ", self.name)
 				emit_signal("_player_interract")
 
+func _on_Area2D_body_entered(body):
+	nearby_areas.append(body)
 
-func _on_Area2D_area_entered(area):
-	nearby_areas.append(area)
-
-func _on_Area2D_area_exited(area):
-	nearby_areas.erase(area)
+func _on_Area2D_body_exited(body):
+	nearby_areas.erase(body)
