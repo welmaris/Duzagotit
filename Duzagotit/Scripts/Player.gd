@@ -13,7 +13,7 @@ func _ready():
 
 
 func start(pos):
-	position = pos
+	#position = pos
 	show()
 #	$CollisionShape2D.disabled = false
 

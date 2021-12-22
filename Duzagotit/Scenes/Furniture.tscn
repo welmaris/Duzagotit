@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Art/Images/furniture_tileset.png" type="Texture" id=1]
+[ext_resource path="res://Art/Images/table.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Furniture.gd" type="Script" id=2]
 [ext_resource path="res://Art/turnyellow.gdshader" type="Shader" id=3]
 
@@ -9,11 +9,6 @@ extents = Vector2( 53.0995, 41.845 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 35.5766, 25.7364 )
-
-[sub_resource type="AtlasTexture" id=3]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 5, 69, 73, 60 )
 
 [sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 3 )
@@ -36,7 +31,7 @@ shape = SubResource( 2 )
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_right = 73.0
 margin_bottom = 60.0
-texture = SubResource( 3 )
+texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -44,12 +39,12 @@ __meta__ = {
 [node name="Outline" type="TextureRect" parent="TextureRect"]
 show_behind_parent = true
 material = SubResource( 4 )
-margin_left = -3.0
-margin_top = -2.11893
-margin_right = 69.5567
-margin_bottom = 57.8811
+margin_left = -4.22983
+margin_top = -1.61689
+margin_right = 401.77
+margin_bottom = 404.383
 rect_scale = Vector2( 1.1, 1.1 )
-texture = SubResource( 3 )
+texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

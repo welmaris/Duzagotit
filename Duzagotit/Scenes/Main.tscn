@@ -18,9 +18,10 @@ script = ExtResource( 1 )
 QuestionBubble = ExtResource( 2 )
 Question = ExtResource( 4 )
 Minigame = ExtResource( 6 )
+Furniture = ExtResource( 5 )
 
 [node name="QuestionSpawnTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 25.0
 autostart = true
 
 [node name="Path2D" type="Path2D" parent="."]
@@ -36,12 +37,7 @@ rotation = 2.80005
 
 [node name="House" parent="." instance=ExtResource( 7 )]
 
-[node name="Furniture" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1306.7, 873.224 )
-scale = Vector2( 1.5, 1.5 )
-
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 536.199, 919.918 )
+position = Vector2( 564.708, 912.791 )
 
 [connection signal="timeout" from="QuestionSpawnTimer" to="." method="_on_QuestionSpawnTimer_timeout"]
-[connection signal="_player_interract" from="Furniture" to="." method="_player_interract"]

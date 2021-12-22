@@ -3,6 +3,7 @@ extends Node
 export (PackedScene) var QuestionBubble
 export (PackedScene) var Question
 export (PackedScene) var Minigame
+export (PackedScene) var Furniture
 var score
 var questionstatus = {}
 var current_question_correct_answers = null
@@ -15,8 +16,34 @@ func new_game():
 
 
 func _ready():
+	spawn_furniture()
 	randomize()
 	new_game()
+	
+func spawn_furniture():
+	var minigame_names = ["recycling_bins","collect_dishes"]
+	for name in minigame_names:
+		var furn = Furniture.instance()
+		furn.connect("_on_Area2D_body_entered", furn, "_on_Area2D_body_entered")
+		furn.connect("_on_Area2D_body_exited", furn, "_on_Area2D_body_exited")
+		furn.connect("_player_interract", self, "_player_interract")
+		furn.minigame_name = name
+		if name == "recycling_bins":
+			furn.position = Vector2(1300,875)
+			furn.scale = Vector2(1.5,1.5)
+			furn.get_node("TextureRect").texture = AtlasTexture
+			furn.get_node("TextureRect").get_node("Outline").texture = load("res://Art/Images/furniture_tileset.png")
+			furn.get_node("TextureRect").atlas = load("res://Art/Images/furniture_tileset.png")
+			furn.get_node("TextureRect").texture.region_rect = Rect2(5,69,78,129)
+			furn.get_node("TextureRect").get_node("Outline").region_rect = Rect2(5,69,78,129)
+			
+		if name == "collect_dishes":
+			furn.position = Vector2(500,800)
+			furn.scale = Vector2(.1,.1)
+			furn.get_node("TextureRect").texture = load("res://Art/Images/plate.png")
+			furn.get_node("TextureRect").get_node("Outline").texture = load("res://Art/Images/plate.png")
+		add_child(furn)
+		move_child(furn,furn.get_index() - 1)
 	
 func _on_QuestionSpawnTimer_timeout(): # spawns a question bubble for the player to click on
 	$Path2D/PathFollow2D.offset = randi()
@@ -48,7 +75,7 @@ func answer_pressed(buttonint):
 	timer.one_shot = true
 	add_child(timer) 
 	timer.start() 
-	
+
 func _on_answer_show_timeout():
 	if is_instance_valid(QuestionScene):
 		QuestionScene.queue_free()
@@ -88,14 +115,15 @@ func _on_Click_Question(category):
 	else:
 		QuestionScene.get_node("B3").hide()
 
-func _player_interract():
+func _player_interract(name):
 	minigame_is_showing = true
 	for child in self.get_children(): 
 		if (child.has_method("_on_VisibilityNotifier2D_screen_exited")): 
 			child.queue_free()
 	$QuestionSpawnTimer.stop()
 	var MinigameScene = Minigame.instance()
-	MinigameScene.minigame_name = "recycling_bins"
+	
+	MinigameScene.minigame_name = name
 	add_child(MinigameScene)
 	
 
