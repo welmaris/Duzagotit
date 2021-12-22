@@ -10,6 +10,12 @@ var wastetype = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if wastetype == "paper" or wastetype == "plastic" or wastetype == "glass" or wastetype == "green" or wastetype == "rest":
+		$Sprite.show()
+		$Sprite2.hide()
+	else:
+		$Sprite.hide()
+		$Sprite2.show()
 	if wastetype == "paper":
 		$Sprite.frame = 0
 	if wastetype == "plastic":
@@ -20,6 +26,10 @@ func _ready():
 		$Sprite.frame = 4
 	if wastetype == "rest":
 		$Sprite.frame = 8
+	if wastetype == "plate":
+		$Sprite2.texture = load("res://Art/Images/plate.png")
+	if wastetype == "bowl":
+		$Sprite2.texture = load("res://Art/Images/plate.png")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -39,7 +49,7 @@ func _on_Click_input_event(viewport, event, shape_idx):
 
 func _on_Click_and_Drag_area_entered(area):
 	if("MinigameInterractObject" in area.name):
-		var bintype
+		var bintype = "dishes"
 		if "1.png" in  area.get_node("Sprite").texture.get_path():
 			bintype = "paper"
 		if "2.png" in  area.get_node("Sprite").texture.get_path():
@@ -50,7 +60,7 @@ func _on_Click_and_Drag_area_entered(area):
 			bintype = "green"
 		if "5.png" in  area.get_node("Sprite").texture.get_path():
 			bintype = "plastic"
-		if wastetype == bintype:
+		if wastetype == bintype or bintype == "dishes":
 			emit_signal("correct_waste_disposal")
 		else:
 			emit_signal("incorrect_waste_disposal")

@@ -11,7 +11,6 @@ var minigame_name
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$TextureRect/Outline.visible = false
-	minigame_name = ""
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -4,7 +4,7 @@ export (PackedScene) var QuestionBubble
 export (PackedScene) var Question
 export (PackedScene) var Minigame
 export (PackedScene) var Furniture
-var score
+var score = 0
 var questionstatus = {}
 var current_question_correct_answers = null
 var QuestionScene
@@ -21,7 +21,7 @@ func _ready():
 	new_game()
 	
 func spawn_furniture():
-	var minigame_names = ["recycling_bins","collect_dishes"]
+	var minigame_names = ["recycling_bins","collect_dishes","do_dishes"]
 	for name in minigame_names:
 		var furn = Furniture.instance()
 		furn.connect("_on_Area2D_body_entered", furn, "_on_Area2D_body_entered")
@@ -51,6 +51,17 @@ func spawn_furniture():
 			furn.get_node("CollisionShape2D").scale = Vector2(5,2)
 			furn.get_node("Area2D").get_node("InteractionSpace").position = Vector2(200,200)
 			furn.get_node("Area2D").get_node("InteractionSpace").scale = Vector2(5,13)
+		if name == "do_dishes":
+			furn.position = Vector2(1150,715)
+			furn.scale = Vector2(.13,.13)
+			furn.get_node("TextureRect").texture = load("res://Art/Images/sponge.png")
+			furn.get_node("TextureRect").get_node("Outline").texture = load("res://Art/Images/sponge.png")
+			furn.get_node("TextureRect").get_node("Outline").margin_left = -10
+			furn.get_node("TextureRect").get_node("Outline").margin_top = -10
+			furn.get_node("CollisionShape2D").position = Vector2(200,38)
+			furn.get_node("CollisionShape2D").scale = Vector2(2,1)
+			furn.get_node("Area2D").get_node("InteractionSpace").position = Vector2(200,200)
+			furn.get_node("Area2D").get_node("InteractionSpace").scale = Vector2(2,6)
 			
 		add_child(furn)
 		move_child(furn,furn.get_index() - 1)

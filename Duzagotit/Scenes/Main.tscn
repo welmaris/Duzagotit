@@ -21,7 +21,7 @@ Minigame = ExtResource( 6 )
 Furniture = ExtResource( 5 )
 
 [node name="QuestionSpawnTimer" type="Timer" parent="."]
-wait_time = 25.0
+wait_time = 12.5
 autostart = true
 
 [node name="Path2D" type="Path2D" parent="."]

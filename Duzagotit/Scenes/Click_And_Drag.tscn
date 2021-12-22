@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/Click_And_Drag.gd" type="Script" id=1]
 [ext_resource path="res://Art/Images/afval_tileset.png" type="Texture" id=2]
+[ext_resource path="res://Art/Images/plate.png" type="Texture" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 76.7417
@@ -23,6 +24,11 @@ region_rect = Rect2( 53, 53, 53, 53 )
 position = Vector2( -3.37885, 20.5521 )
 rotation = 1.5708
 shape = SubResource( 1 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( -2.24744, 20.9763 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 3 )
 
 [connection signal="area_entered" from="." to="." method="_on_Click_and_Drag_area_entered"]
 [connection signal="input_event" from="." to="." method="_on_Click_input_event"]
