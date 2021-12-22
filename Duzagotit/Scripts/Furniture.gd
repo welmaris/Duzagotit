@@ -30,7 +30,8 @@ func _process(_delta):
 				emit_signal("_player_interract",minigame_name)
 
 func _on_Area2D_body_entered(body):
-	nearby_areas.append(body)
+	if(get_parent().get_node("Player") == body):
+		nearby_areas.append(body)
 
 func _on_Area2D_body_exited(body):
 	nearby_areas.erase(body)

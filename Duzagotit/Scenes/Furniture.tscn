@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Art/Images/table.png" type="Texture" id=1]
+[ext_resource path="res://Art/Images/plate.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Furniture.gd" type="Script" id=2]
 [ext_resource path="res://Art/turnyellow.gdshader" type="Shader" id=3]
 
@@ -10,7 +10,7 @@ extents = Vector2( 53.0995, 41.845 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 35.5766, 25.7364 )
 
-[sub_resource type="ShaderMaterial" id=4]
+[sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 3 )
 
 [node name="Furniture" type="StaticBody2D"]
@@ -29,8 +29,8 @@ position = Vector2( 35.3409, 33.7818 )
 shape = SubResource( 2 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
-margin_right = 73.0
-margin_bottom = 60.0
+margin_right = 406.0
+margin_bottom = 406.0
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -38,9 +38,9 @@ __meta__ = {
 
 [node name="Outline" type="TextureRect" parent="TextureRect"]
 show_behind_parent = true
-material = SubResource( 4 )
-margin_left = -4.22983
-margin_top = -1.61689
+material = SubResource( 3 )
+margin_left = -20.0
+margin_top = -20.0
 margin_right = 401.77
 margin_bottom = 404.383
 rect_scale = Vector2( 1.1, 1.1 )

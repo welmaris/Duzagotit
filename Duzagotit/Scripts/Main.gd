@@ -31,17 +31,27 @@ func spawn_furniture():
 		if name == "recycling_bins":
 			furn.position = Vector2(1300,875)
 			furn.scale = Vector2(1.5,1.5)
-			furn.get_node("TextureRect").texture = AtlasTexture
-			furn.get_node("TextureRect").get_node("Outline").texture = load("res://Art/Images/furniture_tileset.png")
-			furn.get_node("TextureRect").atlas = load("res://Art/Images/furniture_tileset.png")
-			furn.get_node("TextureRect").texture.region_rect = Rect2(5,69,78,129)
-			furn.get_node("TextureRect").get_node("Outline").region_rect = Rect2(5,69,78,129)
+			furn.get_node("TextureRect").texture = load("res://Art/Images/table.png")
+			furn.get_node("TextureRect").get_node("Outline").texture = load("res://Art/Images/table.png")
+			furn.get_node("TextureRect").get_node("Outline").margin_left = -4
+			furn.get_node("TextureRect").get_node("Outline").margin_top = -1
+			furn.get_node("CollisionShape2D").position = Vector2(35.341,33.782)
+			furn.get_node("CollisionShape2D").scale = Vector2(1,1)
+			furn.get_node("Area2D").get_node("InteractionSpace").position = Vector2(35.19,32.518)
+			furn.get_node("Area2D").get_node("InteractionSpace").scale = Vector2(1,1)
 			
 		if name == "collect_dishes":
 			furn.position = Vector2(500,800)
 			furn.scale = Vector2(.1,.1)
 			furn.get_node("TextureRect").texture = load("res://Art/Images/plate.png")
 			furn.get_node("TextureRect").get_node("Outline").texture = load("res://Art/Images/plate.png")
+			furn.get_node("TextureRect").get_node("Outline").margin_left = -20
+			furn.get_node("TextureRect").get_node("Outline").margin_top = -20
+			furn.get_node("CollisionShape2D").position = Vector2(200,38)
+			furn.get_node("CollisionShape2D").scale = Vector2(5,2)
+			furn.get_node("Area2D").get_node("InteractionSpace").position = Vector2(200,200)
+			furn.get_node("Area2D").get_node("InteractionSpace").scale = Vector2(5,13)
+			
 		add_child(furn)
 		move_child(furn,furn.get_index() - 1)
 	
