@@ -25,7 +25,7 @@ func _process(_delta):
 	if Input.is_action_just_pressed("interact"):
 		if(len(nearby_areas) > 0):
 			if nearby_areas[0] == get_parent().get_node("Player"):
-				print("player just clicked: ", self.name)
+				#print("player just clicked: ", self.name)
 				emit_signal("_player_interract",minigame_name)
 
 func _on_Area2D_body_entered(body):

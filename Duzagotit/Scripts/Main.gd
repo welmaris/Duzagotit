@@ -20,14 +20,20 @@ func _ready():
 	randomize()
 	new_game()
 	
+
+func _process(delta):
+	get_node("HUD/Label").text = "Score: "+ str(score)
+
 func spawn_furniture():
-	var minigame_names = ["recycling_bins","collect_dishes","do_dishes"]
+	var minigame_names = ["recycling_bins","collect_dishes","cd2","do_dishes"]
 	for name in minigame_names:
 		var furn = Furniture.instance()
 		furn.connect("_on_Area2D_body_entered", furn, "_on_Area2D_body_entered")
 		furn.connect("_on_Area2D_body_exited", furn, "_on_Area2D_body_exited")
 		furn.connect("_player_interract", self, "_player_interract")
 		furn.minigame_name = name
+		if "cd" in name:
+			furn.minigame_name = "collect_dishes"
 		if name == "recycling_bins":
 			furn.position = Vector2(1270,640)
 			furn.scale = Vector2(.08,.08)
@@ -40,8 +46,10 @@ func spawn_furniture():
 			furn.get_node("Area2D").get_node("InteractionSpace").position = Vector2(635.19,532.518)
 			furn.get_node("Area2D").get_node("InteractionSpace").scale = Vector2(10,30)
 			
-		if name == "collect_dishes":
-			furn.position = Vector2(500,800)
+		if name == "collect_dishes" or name == "cd2":
+			furn.position = Vector2(500,810)
+			if name == "cd2":
+				furn.position = Vector2(925,315)
 			furn.scale = Vector2(.1,.1)
 			furn.get_node("TextureRect").texture = load("res://Art/Images/plate.png")
 			furn.get_node("TextureRect").get_node("Outline").texture = load("res://Art/Images/plate.png")
@@ -64,7 +72,7 @@ func spawn_furniture():
 			furn.get_node("Area2D").get_node("InteractionSpace").scale = Vector2(2,6)
 			
 		add_child(furn)
-		move_child(furn,furn.get_index() - 1)
+		move_child(furn,furn.get_index() - 2)
 	
 func _on_QuestionSpawnTimer_timeout(): # spawns a question bubble for the player to click on
 	$Path2D/PathFollow2D.offset = randi()
@@ -80,11 +88,7 @@ func answer_pressed(buttonint):
 	incorrect_style.set_bg_color(Color("#eb5e54"))
 	var btn = QuestionScene.get_node("B"+str(buttonint))
 	if buttonint == current_question_correct_answers:
-#		print("Correct")
-#		QuestionScene.get_node("B0").hide()
-#		QuestionScene.get_node("B1").hide()
-#		QuestionScene.get_node("B2").hide()
-#		QuestionScene.get_node("B3").hide()
+		score += 2
 		btn.set('custom_styles/pressed', correct_style)
 	else:
 #		print("Not correct")

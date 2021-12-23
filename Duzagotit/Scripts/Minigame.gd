@@ -78,22 +78,36 @@ func spawn_trash_cans():
 		trashcan.position = Vector2(300+300*x,800)
 
 func check_done():
-	print(get_child_count())
+	#print(get_child_count())
 	if minigame_name == "collect_dishes" and get_child_count() == 4:
 		minigame_done()
 	if minigame_name == "recycling_bins" and get_child_count() == 8:
 		minigame_done()
 
 func minigame_done():
+	var correct_sprite = Sprite.new()
+	correct_sprite.texture = load("res://Art/Images/correct.png")
+	correct_sprite.position = Vector2(500,500)
+	add_child(correct_sprite)
+	var minigame_show_result_timer = Timer.new()
+	minigame_show_result_timer.set_one_shot(true)
+	minigame_show_result_timer.set_wait_time(2)
+	minigame_show_result_timer.connect("timeout",self,"mgad")
+	add_child(minigame_show_result_timer)
+	minigame_show_result_timer.start()
+	
+func mgad():
 	get_parent().minigame_is_showing = false
 	get_parent().score += in_minigame_score
 	in_minigame_score = 0
 	for x in get_parent().get_children():
 		if "urni" in x.name:
-			if x.minigame_name == "collect_dishes" and x.minigame_name == minigame_name:
-				x.queue_free()
+			if x.minigame_name == "collect_dishes" and x.minigame_name == minigame_name and len(x.nearby_areas) > 0:
+				if x.nearby_areas[0] == get_parent().get_node("Player"):
+					x.queue_free()
 #			else:
 #				x.get_node("TextureRect").get_node("Outline").scale = Vector2(0,0)
+	
 	queue_free()
 
 func minigame_not_done():
@@ -109,9 +123,9 @@ func spawn_faucet():
 func _on_Click_and_Drag_correct_waste_disposal():
 	in_minigame_score += 1
 	check_done()
-	print("wow correct indeed")
+	#print("wow correct indeed")
 
 
 func _on_Click_and_Drag_incorrect_waste_disposal():
 	check_done()
-	print("hmmm not so correct actually")
+	#print("hmmm not so correct actually")

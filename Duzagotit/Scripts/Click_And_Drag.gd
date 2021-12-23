@@ -67,5 +67,3 @@ func _on_Click_and_Drag_area_entered(area):
 		else:
 			emit_signal("incorrect_waste_disposal")
 		queue_free()
-	else:
-		area.sponge_is_on_dish = true
