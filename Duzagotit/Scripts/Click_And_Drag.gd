@@ -30,6 +30,8 @@ func _ready():
 		$Sprite2.texture = load("res://Art/Images/plate.png")
 	if wastetype == "bowl":
 		$Sprite2.texture = load("res://Art/Images/plate.png")
+	if wastetype == "sponge":
+		$Sprite2.texture = load("res://Art/Images/sponge.png")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -65,3 +67,5 @@ func _on_Click_and_Drag_area_entered(area):
 		else:
 			emit_signal("incorrect_waste_disposal")
 		queue_free()
+	else:
+		area.sponge_is_on_dish = true

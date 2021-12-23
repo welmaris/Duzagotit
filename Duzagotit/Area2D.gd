@@ -16,7 +16,7 @@ func _process(delta):
 		mouse_offset = position - get_viewport().get_mouse_position()
 		rotation = atan2(mouse_offset.y,mouse_offset.x) + rotation_offset
 		total_rotation += rotation - previous_rotation
-		print(total_rotation)
+		#print(total_rotation)
 
 func _input(event):
 	if event is InputEventMouseButton:

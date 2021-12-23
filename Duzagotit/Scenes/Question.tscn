@@ -1,11 +1,33 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Art/Calibri.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Art/CalibriSmall.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Scripts/Question.gd" type="Script" id=3]
 
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.00662252, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.429688, 0.429688, 0.429688, 1, 0.71875, 0.71875, 0.71875, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
 [node name="Question" type="CanvasLayer"]
 script = ExtResource( 3 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0.498039 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -30.6523
+margin_top = 2.37842
+margin_right = 97.3477
+margin_bottom = 2.37842
+mouse_filter = 2
+texture = SubResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="QuestionTitle" type="Label" parent="."]
 anchor_right = 1.0

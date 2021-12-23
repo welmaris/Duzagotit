@@ -4,6 +4,7 @@ export (PackedScene) var Trashcan
 export (PackedScene) var LightSwitch
 export (PackedScene) var Faucet
 export (PackedScene) var FaucetKnob
+export (PackedScene) var Dishes
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -24,11 +25,13 @@ func _ready():
 	if minigame_name == "fixing_faucet":
 		spawn_faucet()
 	if minigame_name == "collect_dishes":
-		for x in range(3):
+		for x in range(6):
 			spawn_trash(["plate"])
-			spawn_trash(["bowl"])
 		spawn_dish_bowl()
 		pass
+	if minigame_name == "do_dishes":
+		spawn_trash(["sponge"])
+		spawn_dish()
 		
 
 func spawn_trash(possible_wastetype): # spawns a trash item
@@ -50,7 +53,20 @@ func spawn_dish_bowl():
 	
 	add_child(dishbowl)
 	dishbowl.position = Vector2(1300,500)
-
+	
+func spawn_dish():
+	var dish = Dishes.instance()
+	dish.get_node("Sprite").texture = load("res://Art/Images/plate.png")
+	dish.position = Vector2(400,400)
+	add_child(dish)
+	move_child(dish,dish.get_index() - 1)
+	
+func did_a_dish():
+	in_minigame_score += 1
+	spawn_dish()
+	if in_minigame_score == 5:
+		minigame_done()
+	
 func spawn_trash_cans():
 	for x in range(5):
 		var trashcan = Trashcan.instance()
@@ -69,13 +85,19 @@ func check_done():
 		minigame_done()
 
 func minigame_done():
+	get_parent().minigame_is_showing = false
 	get_parent().score += in_minigame_score
+	in_minigame_score = 0
 	for x in get_parent().get_children():
 		if "urni" in x.name:
-			if x.minigame_name == "collect_dishes":
+			if x.minigame_name == "collect_dishes" and x.minigame_name == minigame_name:
 				x.queue_free()
-			else:
-				x.get_node("TextureRect").get_node("Outline").scale = Vector2(0,0)
+#			else:
+#				x.get_node("TextureRect").get_node("Outline").scale = Vector2(0,0)
+	queue_free()
+
+func minigame_not_done():
+	get_parent().minigame_is_showing = false
 	queue_free()
 
 func spawn_faucet():

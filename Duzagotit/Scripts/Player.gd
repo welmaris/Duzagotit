@@ -20,16 +20,19 @@ func start(pos):
 
 func get_input(delta):
 	var velocity = Vector2()
-#	if !get_parent().question_is_showing and !get_parent().minigame_is_showing:
-	if Input.is_action_pressed("move_right"):
-	   velocity.x += 1
-	if Input.is_action_pressed("move_left"):
-		velocity.x -= 1
-	if Input.is_action_pressed("move_down"):
-		velocity.y += 1
-	if Input.is_action_pressed("move_up"):
-		velocity.y -= 1
-
+	if !get_parent().question_is_showing and !get_parent().minigame_is_showing:
+		if Input.is_action_pressed("move_right"):
+		   velocity.x += 1
+		if Input.is_action_pressed("move_left"):
+			velocity.x -= 1
+		if Input.is_action_pressed("move_down"):
+			velocity.y += 1
+		if Input.is_action_pressed("move_up"):
+			velocity.y -= 1
+	else:
+		if Input.is_action_pressed("ui_cancel"):
+			get_parent()._on_answer_show_timeout()
+			get_parent().minigame_stop()
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
 		$AnimatedSprite.play()
