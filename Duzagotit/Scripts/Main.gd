@@ -4,7 +4,7 @@ export (PackedScene) var QuestionBubble
 export (PackedScene) var Question
 export (PackedScene) var Minigame
 export (PackedScene) var Furniture
-var score = 0
+# var score = 0
 var questionstatus = {}
 var current_question_correct_answers = null
 var QuestionScene
@@ -96,7 +96,7 @@ func answer_pressed(buttonint):
 	var btn = QuestionScene.get_node("B"+str(buttonint))
 	if buttonint == current_question_correct_answers:
 		# score += 2
-		$HUD2.update_score(2)
+		update_score(2)
 		btn.set('custom_styles/pressed', correct_style)
 	else:
 #		print("Not correct")
@@ -190,5 +190,5 @@ func get_New_Question(category):
 	
 	return questions[category][questionnumber]
 
-
-
+func update_score(score: int):
+	$HUD2.update_score(score)

@@ -98,8 +98,7 @@ func minigame_done():
 	
 func mgad():
 	get_parent().minigame_is_showing = false
-	get_parent().score += in_minigame_score
-	get_parent().$HUD2.update_score(in_minigame_score)
+	get_parent().update_score(in_minigame_score)
 	in_minigame_score = 0
 	for x in get_parent().get_children():
 		if "urni" in x.name:
