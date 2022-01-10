@@ -11,19 +11,24 @@ var QuestionScene
 var question_is_showing = false
 var minigame_is_showing = false
 
+# main
 func new_game():
 	$Player.start(Vector2(900,100))
+	$HUD2.reset_score()
 
-
+# main
 func _ready():
+	# $House.spawn_furniture
 	spawn_furniture()
 	randomize()
 	new_game()
 	
 
-func _process(delta):
-	get_node("HUD/Label").text = "Score: "+ str(score)
+# main
+# func _process(delta):
+	# get_node("HUD/Label").text = "Score: "+ str(score)
 
+# house --> places furniture
 func spawn_furniture():
 	var minigame_names = ["recycling_bins","collect_dishes","cd2","do_dishes"]
 	for name in minigame_names:
@@ -73,7 +78,8 @@ func spawn_furniture():
 			
 		add_child(furn)
 		move_child(furn,furn.get_index() - 2)
-	
+
+# questions mc
 func _on_QuestionSpawnTimer_timeout(): # spawns a question bubble for the player to click on
 	$Path2D/PathFollow2D.offset = randi()
 	var QB = QuestionBubble.instance()
@@ -81,6 +87,7 @@ func _on_QuestionSpawnTimer_timeout(): # spawns a question bubble for the player
 	add_child(QB)
 	QB.position = $Path2D/PathFollow2D.position
 
+# questions mc
 func answer_pressed(buttonint):
 	var correct_style = StyleBoxFlat.new()
 	var incorrect_style = StyleBoxFlat.new()
@@ -88,7 +95,8 @@ func answer_pressed(buttonint):
 	incorrect_style.set_bg_color(Color("#eb5e54"))
 	var btn = QuestionScene.get_node("B"+str(buttonint))
 	if buttonint == current_question_correct_answers:
-		score += 2
+		# score += 2
+		$HUD2.update_score(2)
 		btn.set('custom_styles/pressed', correct_style)
 	else:
 #		print("Not correct")
@@ -101,16 +109,19 @@ func answer_pressed(buttonint):
 	add_child(timer) 
 	timer.start() 
 
+# ? 
 func _on_answer_show_timeout():
 	if is_instance_valid(QuestionScene):
 		QuestionScene.queue_free()
 	question_is_showing = false
 	$QuestionSpawnTimer.start()
 
+# ?
 func minigame_stop():
 	if is_instance_valid(Minigame):
 		get_node("Minigame").minigame_not_done()
 
+# questions mc
 func _on_Click_Question(category):
 	if !minigame_is_showing and !question_is_showing:
 		question_is_showing = true
@@ -145,6 +156,7 @@ func _on_Click_Question(category):
 		else:
 			QuestionScene.get_node("B3").hide()
 
+# ?
 func _player_interract(name):
 	if !minigame_is_showing and !question_is_showing:
 		minigame_is_showing = true
@@ -158,6 +170,7 @@ func _player_interract(name):
 		add_child(MinigameScene)
 	
 
+# questions mc
 func get_New_Question(category):
 	var questionfile = File.new()
 	if questionfile.open("res://Art/Questions/test.json", File.READ) != OK:  #parse questions.json to a usable object
@@ -173,7 +186,7 @@ func get_New_Question(category):
 	
 	if questionstatus.has(questions[category][questionnumber]) == null:
 		questionstatus[questions[category][questionnumber]] = "shown" #sets the status of the question as shown so it doesnt appear again
-	
+
 	
 	return questions[category][questionnumber]
 

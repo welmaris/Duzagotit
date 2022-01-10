@@ -1,8 +1,9 @@
-[gd_scene load_steps=549 format=2]
+[gd_scene load_steps=551 format=2]
 
 [ext_resource path="res://Scenes/Houses/TileMaps/TilesetHouse.tres" type="TileSet" id=1]
 [ext_resource path="res://Art/Images/walls.png" type="Texture" id=2]
 [ext_resource path="res://Art/Images/items_unknownAuthor.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/Houses/exit.gd" type="Script" id=4]
 [ext_resource path="res://Art/Images/furniture_tileset.png" type="Texture" id=5]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
@@ -11041,6 +11042,9 @@ resource_local_to_scene = true
 } ]
 222/z_index = 0
 
+[sub_resource type="RectangleShape2D" id=545]
+extents = Vector2( 32.7148, 15.6052 )
+
 [node name="House" type="Node2D"]
 
 [node name="Floor" type="TileMap" parent="."]
@@ -11083,3 +11087,11 @@ tile_data = PoolIntArray( 5767319, 156, 0, 5767425, 156, 0, 5767475, 87, 0, 5833
 __meta__ = {
 "_edit_group_": true
 }
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 4
+
+[node name="exit" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 917.254, 1006.66 )
+shape = SubResource( 545 )
+script = ExtResource( 4 )

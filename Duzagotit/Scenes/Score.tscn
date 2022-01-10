@@ -1,28 +1,40 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://fonts/architect-s-daughter/ArchitectsDaughter32.tres" type="DynamicFont" id=1]
+[ext_resource path="res://fonts/xolonium/Xolonium.tres" type="DynamicFont" id=1]
 
-[node name="Panel" type="Panel"]
-margin_right = 100.0
-margin_bottom = 100.0
+[sub_resource type="GDScript" id=1]
+script/source = "extends Label
+
+var score = 0
+var label
+var required = 150	# required score for unlocking next level
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	update_score(0)
+
+func update_score(score):
+	$ScoreLabel.text = (\"score:\" + str(score) + \"/\" + str(required))
+"
+
+[node name="ScorePanel" type="Panel"]
+anchor_right = 0.052
+anchor_bottom = 0.093
+margin_right = 0.159996
+margin_bottom = -0.440002
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="Score" type="Label" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 10.2649
-margin_right = -10.0
-margin_bottom = -9.73514
-input_pass_on_modal_close_click = false
+[node name="Label" type="Label" parent="."]
+margin_right = 100.0
+margin_bottom = 100.0
 custom_fonts/font = ExtResource( 1 )
-text = "20"
+text = "0"
 align = 1
 valign = 1
-percent_visible = -0.5
+script = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

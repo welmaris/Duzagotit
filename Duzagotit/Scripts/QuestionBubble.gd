@@ -20,7 +20,6 @@ func _process(delta):
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
 
-
 func _on_VraagBubbel_input_event(viewport, event, shape_idx):
 	if (event is InputEventMouseButton && event.pressed):
 		emit_signal("_on_Click_Question", category)
