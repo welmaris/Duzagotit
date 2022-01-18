@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Houses/TileMaps/TilemapStairs.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Houses/TileMaps/TilemapFloor.tres" type="TileSet" id=2]
 [ext_resource path="res://Scenes/Houses/TileMaps/TilesetWall.tres" type="TileSet" id=3]
 [ext_resource path="res://Scenes/Houses/TileMaps/TilemapFurniture.tres" type="TileSet" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 35.1229, 15.8501 )
 
 [node name="House" type="Node2D"]
 
@@ -38,3 +41,9 @@ tile_set = ExtResource( 4 )
 cell_size = Vector2( 2, 2 )
 format = 1
 tile_data = PoolIntArray( 3342767, 130, 0, 10682800, 174, 0, 11927900, 149, 0, 16580737, 127, 0 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 866.121, 847.078 )
+shape = SubResource( 1 )
