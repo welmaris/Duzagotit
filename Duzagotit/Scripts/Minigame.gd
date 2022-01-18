@@ -106,6 +106,7 @@ func minigame_done():
 	minigame_show_result_timer.connect("timeout",self,"mgad")
 	add_child(minigame_show_result_timer)
 	minigame_show_result_timer.start()
+	get_parent().get_node("QuestionSpawnTimer").start()
 	
 func mgad():
 	get_parent().minigame_is_showing = false
