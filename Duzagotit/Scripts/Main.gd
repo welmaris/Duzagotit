@@ -10,7 +10,7 @@ var current_question_correct_answers = null
 var QuestionScene
 var question_is_showing = false
 var minigame_is_showing = false
-
+var can_still_press_answer = true
 # main
 func new_game():
 	$Player.start(Vector2(900,100))
@@ -48,8 +48,8 @@ func spawn_furniture():
 			furn.get_node("TextureRect").get_node("Outline").margin_top = -90
 			furn.get_node("CollisionShape2D").position = Vector2(35.341,533.782)
 			furn.get_node("CollisionShape2D").scale = Vector2(30,30)
-			furn.get_node("Area2D").get_node("InteractionSpace").position = Vector2(635.19,562.518)
-			furn.get_node("Area2D").get_node("InteractionSpace").scale = Vector2(10,20)
+			furn.get_node("Area2D").get_node("InteractionSpace").position = Vector2(635.19,592.518)
+			furn.get_node("Area2D").get_node("InteractionSpace").scale = Vector2(10,23)
 			
 		if name == "collect_dishes" or name == "cd2":
 			furn.position = Vector2(500,810)
@@ -89,25 +89,34 @@ func _on_QuestionSpawnTimer_timeout(): # spawns a question bubble for the player
 
 # questions mc
 func answer_pressed(buttonint):
-	var correct_style = StyleBoxFlat.new()
-	var incorrect_style = StyleBoxFlat.new()
-	correct_style.set_bg_color(Color("#aaea55"))
-	incorrect_style.set_bg_color(Color("#eb5e54"))
-	var btn = QuestionScene.get_node("B"+str(buttonint))
-	if buttonint == current_question_correct_answers:
-		# score += 2
-		update_score(2)
-		btn.set('custom_styles/pressed', correct_style)
-	else:
-#		print("Not correct")
-		btn.set('custom_styles/pressed', incorrect_style)
-		QuestionScene.get_node("B"+str(current_question_correct_answers)).set('custom_styles/normal', correct_style)
-	var timer = Timer.new()
-	timer.connect("timeout",self,"_on_answer_show_timeout") 
-	timer.set_wait_time(2)
-	timer.one_shot = true
-	add_child(timer) 
-	timer.start() 
+	if can_still_press_answer:
+		var correct_style = StyleBoxFlat.new()
+		var incorrect_style = StyleBoxFlat.new()
+		correct_style.set_bg_color(Color("#aaea55"))
+		incorrect_style.set_bg_color(Color("#eb5e54"))
+		var btn = QuestionScene.get_node("B"+str(buttonint))
+		if buttonint == current_question_correct_answers:
+			# score += 2
+			update_score(2)
+			btn.set('custom_styles/pressed', correct_style)
+			btn.set('custom_styles/hover', correct_style)
+			btn.set('custom_styles/normal', correct_style)
+			can_still_press_answer = false
+		else:
+	#		print("Not correct")
+			btn.set('custom_styles/pressed', incorrect_style)
+			btn.set('custom_styles/hover', incorrect_style)
+			btn.set('custom_styles/normal', incorrect_style)
+			QuestionScene.get_node("B"+str(current_question_correct_answers)).set('custom_styles/normal', correct_style)
+			QuestionScene.get_node("B"+str(current_question_correct_answers)).set('custom_styles/hover', correct_style)
+			QuestionScene.get_node("B"+str(current_question_correct_answers)).set('custom_styles/pressed', correct_style)
+			can_still_press_answer = false
+		var timer = Timer.new()
+		timer.connect("timeout",self,"_on_answer_show_timeout") 
+		timer.set_wait_time(2)
+		timer.one_shot = true
+		add_child(timer) 
+		timer.start() 
 
 # ? 
 func _on_answer_show_timeout():
@@ -125,6 +134,7 @@ func minigame_stop():
 func _on_Click_Question(category):
 	if !minigame_is_showing and !question_is_showing:
 		question_is_showing = true
+		can_still_press_answer = true
 		for child in self.get_children(): 
 			if (child.has_method("_on_VisibilityNotifier2D_screen_exited")): 
 				child.queue_free()

@@ -54,18 +54,18 @@ func get_input(delta):
 		
 	move_and_collide((velocity * delta))
 
-func _on_Player_body_entered( _body ):
-	hide()
-	print("yeah")
-	emit_signal("hit")
-	$InteractionShape.set_deferred("disabled", true)
-
+#func _on_Player_body_entered( _body ):
+#	hide()
+#	print("yeah")
+#	emit_signal("hit")
+#	$InteractionShape.set_deferred("disabled", true)
+#
 
 func _physics_process(delta):
 	get_input(delta)
 
-
-func _on_Player_hit():
-	hide()
-	emit_signal("hit")
-	$InteractionShape.set_deferred("disabled", true)
+#
+#func _on_Player_hit():
+#	hide()
+#	emit_signal("hit")
+#	$InteractionShape.set_deferred("disabled", true)

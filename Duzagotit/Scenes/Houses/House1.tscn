@@ -5,8 +5,8 @@
 [ext_resource path="res://Scenes/Houses/TileMaps/TilemapFloor.tres" type="TileSet" id=3]
 [ext_resource path="res://Scenes/Houses/TileMaps/TilesetWall.tres" type="TileSet" id=4]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32.7148, 15.6052 )
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
 
 [node name="House" type="Node2D"]
 
@@ -54,5 +54,6 @@ __meta__ = {
 collision_mask = 4
 
 [node name="exit" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 917.254, 1006.66 )
+position = Vector2( 883.883, 989.975 )
+scale = Vector2( 2, 1 )
 shape = SubResource( 1 )
