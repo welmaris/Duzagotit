@@ -48,8 +48,8 @@ func spawn_furniture():
 			furn.get_node("TextureRect").get_node("Outline").margin_top = -90
 			furn.get_node("CollisionShape2D").position = Vector2(35.341,533.782)
 			furn.get_node("CollisionShape2D").scale = Vector2(30,30)
-			furn.get_node("Area2D").get_node("InteractionSpace").position = Vector2(635.19,532.518)
-			furn.get_node("Area2D").get_node("InteractionSpace").scale = Vector2(10,30)
+			furn.get_node("Area2D").get_node("InteractionSpace").position = Vector2(635.19,562.518)
+			furn.get_node("Area2D").get_node("InteractionSpace").scale = Vector2(10,20)
 			
 		if name == "collect_dishes" or name == "cd2":
 			furn.position = Vector2(500,810)

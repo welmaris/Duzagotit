@@ -22,16 +22,19 @@ func _ready():
 		for x in range(5):
 			spawn_trash(["glass","plastic","green","paper","rest"])
 		spawn_trash_cans()
+		$Explanation.text = "Gooi al het afval in de juiste bak"
 	if minigame_name == "fixing_faucet":
 		spawn_faucet()
 	if minigame_name == "collect_dishes":
+		in_minigame_max_score = 6
 		for x in range(6):
 			spawn_trash(["plate"])
 		spawn_dish_bowl()
-		pass
+		$Explanation.text = "Verzamel alle afwas"
 	if minigame_name == "do_dishes":
 		spawn_trash(["sponge"])
 		spawn_dish()
+		$Explanation.text = "Poets de borden schoon met de spons"
 		
 
 func spawn_trash(possible_wastetype): # spawns a trash item
@@ -44,6 +47,8 @@ func spawn_trash(possible_wastetype): # spawns a trash item
 	trash.wastetype = possible_wastetype[randi()%len(possible_wastetype)]
 	add_child(trash)
 	trash.position = $Path2D/PathFollow2D.position
+	if possible_wastetype[0] == "plate":
+		trash.position.x = trash.position.x / 2
 
 func spawn_dish_bowl():
 	var dishbowl = Trashcan.instance()
@@ -62,10 +67,14 @@ func spawn_dish():
 	move_child(dish,dish.get_index() - 1)
 	
 func did_a_dish():
+	$AudioStreamPlayer.stream = load("res://Art/Sound/ding.ogg")
+	$AudioStreamPlayer.play()
 	in_minigame_score += 1
-	spawn_dish()
 	if in_minigame_score == 5:
 		minigame_done()
+	else:
+		spawn_dish()
+	
 	
 func spawn_trash_cans():
 	for x in range(5):
@@ -79,12 +88,14 @@ func spawn_trash_cans():
 
 func check_done():
 	#print(get_child_count())
-	if minigame_name == "collect_dishes" and get_child_count() == 4:
+	if minigame_name == "collect_dishes" and get_child_count() == 6:
 		minigame_done()
-	if minigame_name == "recycling_bins" and get_child_count() == 8:
+	if minigame_name == "recycling_bins" and get_child_count() == 10:
 		minigame_done()
 
 func minigame_done():
+	$AudioStreamPlayer.stream = load("res://Art/Sound/correct.ogg")
+	$AudioStreamPlayer.play()
 	var correct_sprite = Sprite.new()
 	correct_sprite.texture = load("res://Art/Images/correct.png")
 	correct_sprite.position = Vector2(500,500)
@@ -122,10 +133,14 @@ func spawn_faucet():
 
 func _on_Click_and_Drag_correct_waste_disposal():
 	in_minigame_score += 1
+	$AudioStreamPlayer.stream = load("res://Art/Sound/ding.ogg")
+	$AudioStreamPlayer.play()
 	check_done()
 	#print("wow correct indeed")
 
 
 func _on_Click_and_Drag_incorrect_waste_disposal():
+	$AudioStreamPlayer.stream = load("res://Art/Sound/wrong.ogg")
+	$AudioStreamPlayer.play()
 	check_done()
 	#print("hmmm not so correct actually")
