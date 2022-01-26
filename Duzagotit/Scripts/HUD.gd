@@ -1,11 +1,8 @@
 extends CanvasLayer
+signal start_game
 
 var score = 0
 var goal = 150
-
-func start_game():
-	# Open house scene
-	pass
 
 # Reset the score to 0
 func reset_score():
@@ -23,3 +20,8 @@ func update_score(change: int):
 func set_goal(newGoal : int):
 	goal = newGoal
 	$ScoreLabel.text = "Score: " + str(score) + "/" + str(goal)
+
+
+func _on_StartGame_pressed():
+	$StartButton.hide()
+	emit_signal("start_game")

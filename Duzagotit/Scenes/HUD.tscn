@@ -17,9 +17,43 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="StartLabel" type="Label" parent="."]
-margin_right = 40.0
-margin_bottom = 14.0
+[node name="StartButton" type="Button" parent="."]
+margin_left = 808.0
+margin_top = 714.0
+margin_right = 1064.0
+margin_bottom = 778.0
+custom_fonts/font = ExtResource( 1 )
+text = "Start"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 428.0
+margin_top = 229.0
+margin_right = 910.0
+margin_bottom = 728.0
+bbcode_enabled = true
+bbcode_text = "[b]Bewegen:[/b]
+[indent]- WASD
+-Pijltjestoetsen[/indent]
+
+[b]Interactie[/b]: (met objecten)
+[indent]- E
+- Shift
+- Enter
+- Spatiebalk[/indent]"
+text = "Bewegen:
+	- WASD
+-Pijltjestoetsen
+
+Interactie: (met objecten)
+	- E
+- Shift
+- Enter
+- Spatiebalk"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="StartButton" to="." method="_on_StartGame_pressed"]

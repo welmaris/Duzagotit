@@ -3,9 +3,6 @@ extends StaticBody2D
 signal _player_interract
 var nearby_areas = []
 var minigame_name
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 
 
 # Called when the node enters the scene tree for the first time.

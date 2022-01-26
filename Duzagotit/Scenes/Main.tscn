@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/QuestionBubble.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Question.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Furniture.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Minigame.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Houses/House1.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=9]
@@ -19,7 +18,7 @@ script = ExtResource( 1 )
 QuestionBubble = ExtResource( 2 )
 Question = ExtResource( 4 )
 Minigame = ExtResource( 6 )
-Furniture = ExtResource( 5 )
+House1 = NodePath("House1")
 
 [node name="QuestionSpawnTimer" type="Timer" parent="."]
 wait_time = 12.5
@@ -36,11 +35,13 @@ __meta__ = {
 position = Vector2( 1623.02, 704.733 )
 rotation = 2.80005
 
-[node name="House" parent="." instance=ExtResource( 7 )]
-
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 564.708, 912.791 )
 
-[node name="HUD2" parent="." instance=ExtResource( 9 )]
+[node name="HUD" parent="." instance=ExtResource( 9 )]
+
+[node name="House1" parent="." instance=ExtResource( 7 )]
+visible = false
 
 [connection signal="timeout" from="QuestionSpawnTimer" to="." method="_on_QuestionSpawnTimer_timeout"]
+[connection signal="start_game" from="HUD" to="." method="new_game"]
