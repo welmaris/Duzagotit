@@ -20,7 +20,7 @@ func spawn_minigames(minigame_names: Array):
 		var furn = Furniture.instance()
 		furn.connect("_on_Area2D_body_entered", furn, "_on_Area2D_body_entered")
 		furn.connect("_on_Area2D_body_exited", furn, "_on_Area2D_body_exited")
-		furn.connect("_player_interract", self, "_player_interract")
+		furn.connect("_player_interract", get_parent(), "_player_interract")
 		furn.minigame_name = name
 		
 		if "cd" in name:

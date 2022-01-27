@@ -21,7 +21,14 @@ func set_goal(newGoal : int):
 	goal = newGoal
 	$ScoreLabel.text = "Score: " + str(score) + "/" + str(goal)
 
+func show_instruction():
+	$RichTextLabel.show()
+
+func hide_instruction():
+	$RichTextLabel.hide()	
+
 
 func _on_StartGame_pressed():
 	$StartButton.hide()
+	hide_instruction()
 	emit_signal("start_game")

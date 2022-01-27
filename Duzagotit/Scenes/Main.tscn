@@ -18,7 +18,7 @@ script = ExtResource( 1 )
 QuestionBubble = ExtResource( 2 )
 Question = ExtResource( 4 )
 Minigame = ExtResource( 6 )
-House1 = NodePath("House1")
+House1 = ExtResource( 7 )
 
 [node name="QuestionSpawnTimer" type="Timer" parent="."]
 wait_time = 12.5
@@ -39,9 +39,6 @@ rotation = 2.80005
 position = Vector2( 564.708, 912.791 )
 
 [node name="HUD" parent="." instance=ExtResource( 9 )]
-
-[node name="House1" parent="." instance=ExtResource( 7 )]
-visible = false
 
 [connection signal="timeout" from="QuestionSpawnTimer" to="." method="_on_QuestionSpawnTimer_timeout"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]

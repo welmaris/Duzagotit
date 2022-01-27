@@ -3,7 +3,7 @@ extends Node
 export (PackedScene) var QuestionBubble
 export (PackedScene) var Question
 export (PackedScene) var Minigame
-export (NodePath) var House1
+export (PackedScene) var House1
 
 # var score = 0
 var questionstatus = {}
@@ -20,7 +20,7 @@ func new_game():
 	$Player.start(Vector2(900,100))
 	$Player.show()
 	$HUD.reset_score()
-	remove_child(House1)
+	#remove_child(house)
 
 # main
 func _ready():
@@ -28,7 +28,9 @@ func _ready():
 	randomize()
 
 func house_select():
-	$Main.add_child(House1)
+	house = House1.instance()
+	add_child(house)
+	move_child(house,house.get_index() - 3)
 
 # questions mc
 func _on_QuestionSpawnTimer_timeout(): # spawns a question bubble for the player to click on
