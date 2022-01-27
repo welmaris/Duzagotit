@@ -8,7 +8,7 @@ export (PackedScene) var Furniture
 func _ready():
 #	$House.show()
 #	Call method to place minigames
-	var minigame_names = ["recycling_bins","collect_dishes","cd2","do_dishes"]
+	var minigame_names = ["recycling_bins","collect_dishes","cd2","do_dishes","teddybear"]
 	spawn_minigames(minigame_names)
 
 
@@ -36,6 +36,8 @@ func spawn_minigames(minigame_names: Array):
 			mini_collect_dishes(furn)
 		elif name == "do_dishes":
 			mini_do_dishes(furn)
+		elif name == "teddybear":
+			mini_teddybear(furn)
 			
 		add_child(furn)
 		move_child(furn,furn.get_index() - 2)
@@ -53,8 +55,8 @@ func mini_recycling(furn):
 	furn.get_node("CollisionShape2D").position = Vector2(35.341,533.782)
 	furn.get_node("CollisionShape2D").scale = Vector2(30,30)
 #
-	furn.get_node("Area2D").get_node("InteractionSpace").position = Vector2(635.19,532.518)
-	furn.get_node("Area2D").get_node("InteractionSpace").scale = Vector2(10,30)
+	furn.get_node("Area2D").get_node("InteractionSpace").position = Vector2(635.19,632.518)
+	furn.get_node("Area2D").get_node("InteractionSpace").scale = Vector2(10,25)
 
 func mini_collect_dishes(furn):
 #	place and add texture
@@ -83,6 +85,21 @@ func mini_do_dishes(furn):
 	furn.get_node("CollisionShape2D").scale = Vector2(2,1)
 	furn.get_node("Area2D").get_node("InteractionSpace").position = Vector2(120,200)
 	furn.get_node("Area2D").get_node("InteractionSpace").scale = Vector2(2,6)
+
+
+func mini_teddybear(furn):
+#	place and add texture
+	furn.position = Vector2(1335,325)
+	furn.scale = Vector2(.04,.04)
+	furn.get_node("TextureRect").texture = load("res://Art/Images/beer_kapot.png")
+	furn.get_node("TextureRect").get_node("Outline").texture = load("res://Art/Images/beer_kapot.png")
+	furn.get_node("TextureRect").get_node("Outline").margin_left = -30
+	furn.get_node("TextureRect").get_node("Outline").margin_top = -100
+#	add collision
+	furn.get_node("CollisionShape2D").position = Vector2(200,200)
+	furn.get_node("CollisionShape2D").scale = Vector2(2,20)
+	furn.get_node("Area2D").get_node("InteractionSpace").position = Vector2(250,200)
+	furn.get_node("Area2D").get_node("InteractionSpace").scale = Vector2(10,40)
 
 #func minigame_stop():
 #	if is_instance_valid(Minigame):

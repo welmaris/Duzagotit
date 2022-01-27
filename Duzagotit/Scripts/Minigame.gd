@@ -113,12 +113,11 @@ func mgad():
 	get_parent().minigame_is_showing = false
 	get_parent().update_score(in_minigame_score)
 	in_minigame_score = 0
-	for y in get_parent().get_children():
+	for y in get_parent().get_children():     #Delete the correct furniture that starts the minigame
 		if "ous" in y.name:
 			for x in y.get_children():
 				if "Furni" in x.name:
 					if x.minigame_name == "collect_dishes" and x.minigame_name == minigame_name and len(x.nearby_areas) > 0:
-						print("gothere")
 						if x.nearby_areas[0] == get_parent().get_node("Player"):
 							x.queue_free()
 		#			else:
