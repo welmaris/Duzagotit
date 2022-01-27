@@ -34,24 +34,10 @@ margin_top = 280.0
 margin_right = 616.0
 margin_bottom = 779.0
 bbcode_enabled = true
-bbcode_text = "[b]Bewegen:[/b]
-[indent]- WASD
--Pijltjestoetsen[/indent]
-
-[b]Interactie[/b]: (met objecten)
-[indent]- E
-- Shift
-- Enter
-- Spatiebalk[/indent]"
-text = "Bewegen:
-	- WASD
--Pijltjestoetsen
-
-Interactie: (met objecten)
-	- E
-- Shift
-- Enter
-- Spatiebalk"
+bbcode_text = "[b]Welkom!![/b]
+Hier komt nog een uitleg voor het spel!!!"
+text = "Welkom!!
+Hier komt nog een uitleg voor het spel!!!"
 __meta__ = {
 "_edit_use_anchors_": false
 }
