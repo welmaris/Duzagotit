@@ -84,6 +84,6 @@ func mini_do_dishes(furn):
 	furn.get_node("Area2D").get_node("InteractionSpace").position = Vector2(120,200)
 	furn.get_node("Area2D").get_node("InteractionSpace").scale = Vector2(2,6)
 
-func minigame_stop():
-	if is_instance_valid(Minigame):
-		get_node("Minigame").minigame_not_done()
+#func minigame_stop():
+#	if is_instance_valid(Minigame):
+#		get_node("Minigame").minigame_not_done()

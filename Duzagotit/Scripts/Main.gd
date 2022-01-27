@@ -13,13 +13,16 @@ var question_is_showing = false
 var minigame_is_showing = false
 var can_still_press_answer = true
 var house
+var housenumber = 0
+var scoring_per_house = [0,0,0,0,0,0]
 
 # main
 func new_game():
 	house_select()
-	$Player.start(Vector2(900,100))
+	$Player.start(Vector2(600,900))
 	$Player.show()
 	$HUD.reset_score()
+	$QuestionSpawnTimer.start()
 	#remove_child(house)
 
 # main
@@ -28,6 +31,7 @@ func _ready():
 	randomize()
 
 func house_select():
+	housenumber = 1
 	house = House1.instance()
 	add_child(house)
 	move_child(house,house.get_index() - 3)
@@ -79,9 +83,9 @@ func _on_answer_show_timeout():
 	$QuestionSpawnTimer.start()
 
 # ?
-#func minigame_stop():
-#	if is_instance_valid(Minigame):
-#		get_node("Minigame").minigame_not_done()
+func minigame_stop():
+	if is_instance_valid(Minigame):
+		get_node("Minigame").minigame_not_done()
 
 # questions mc
 func _on_Click_Question(category):
@@ -154,4 +158,6 @@ func get_New_Question(category):
 	return questions[category][questionnumber]
 
 func update_score(score: int):
+	scoring_per_house[housenumber] == score
+	scoring_per_house[0] == scoring_per_house[1] + scoring_per_house[2] + scoring_per_house[3] + scoring_per_house[4] + scoring_per_house[5]
 	$HUD.update_score(score)

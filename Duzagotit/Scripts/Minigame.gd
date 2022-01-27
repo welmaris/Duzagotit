@@ -94,6 +94,7 @@ func check_done():
 		minigame_done()
 
 func minigame_done():
+	yield($AudioStreamPlayer, "finished")
 	$AudioStreamPlayer.stream = load("res://Art/Sound/correct.ogg")
 	$AudioStreamPlayer.play()
 	var correct_sprite = Sprite.new()
@@ -112,14 +113,17 @@ func mgad():
 	get_parent().minigame_is_showing = false
 	get_parent().update_score(in_minigame_score)
 	in_minigame_score = 0
-	for x in get_parent().get_children():
-		if "urni" in x.name:
-			if x.minigame_name == "collect_dishes" and x.minigame_name == minigame_name and len(x.nearby_areas) > 0:
-				if x.nearby_areas[0] == get_parent().get_node("Player"):
-					x.queue_free()
-#			else:
-#				x.get_node("TextureRect").get_node("Outline").scale = Vector2(0,0)
-	
+	for y in get_parent().get_children():
+		if "ous" in y.name:
+			for x in y.get_children():
+				if "Furni" in x.name:
+					if x.minigame_name == "collect_dishes" and x.minigame_name == minigame_name and len(x.nearby_areas) > 0:
+						print("gothere")
+						if x.nearby_areas[0] == get_parent().get_node("Player"):
+							x.queue_free()
+		#			else:
+		#				x.get_node("TextureRect").get_node("Outline").scale = Vector2(0,0)
+		
 	queue_free()
 
 func minigame_not_done():
