@@ -5,6 +5,7 @@ export (PackedScene) var LightSwitch
 export (PackedScene) var Faucet
 export (PackedScene) var FaucetKnob
 export (PackedScene) var Dishes
+export (PackedScene) var Teddy
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -35,6 +36,9 @@ func _ready():
 		spawn_trash(["sponge"])
 		spawn_dish()
 		$Explanation.text = "Poets de borden schoon met de spons"
+	if minigame_name == "teddybear":
+		spawn_teddy()
+		$Explanation.text = "Naai de teddybeer weer dicht"
 		
 
 func spawn_trash(possible_wastetype): # spawns a trash item
@@ -59,6 +63,19 @@ func spawn_dish_bowl():
 	add_child(dishbowl)
 	dishbowl.position = Vector2(1300,500)
 	
+func spawn_teddy():
+	var bear = Teddy.instance()
+	add_child(bear)
+	move_child(bear,bear.get_index() - 1)
+	for x in range(2):
+		var fluff = Trashcan.instance()
+		fluff.get_node("Sprite").texture = load("res://Art/Images/beer_pluis.png")
+		fluff.get_node("Sprite").scale = Vector2(0.2,0.2)
+		fluff.position = Vector2(1100+200*x,400)
+		add_child(fluff)
+	spawn_trash(["needle"])
+	get_child(get_child_count()-1).position = Vector2(800,400)
+
 func spawn_dish():
 	var dish = Dishes.instance()
 	dish.get_node("Sprite").texture = load("res://Art/Images/plate.png")
