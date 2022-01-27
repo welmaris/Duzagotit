@@ -75,14 +75,14 @@ func answer_pressed(buttonint):
 		add_child(timer) 
 		timer.start() 
 
-# ? 
+# 
 func _on_answer_show_timeout():
 	if is_instance_valid(QuestionScene):
 		QuestionScene.queue_free()
 	question_is_showing = false
 	$QuestionSpawnTimer.start()
 
-# ?
+# stopt minigame na drukken op esc
 func minigame_stop():
 	if is_instance_valid(Minigame):
 		get_node("Minigame").minigame_not_done()
@@ -101,7 +101,6 @@ func _on_Click_Question(category):
 		QuestionScene = Question.instance()
 		QuestionScene.connect("_button_pressed",self,"answer_pressed")
 		add_child(QuestionScene)
-		
 		
 		var numberofanswers = len(questionarray) - 1
 		var correctanswerindex = randi()% numberofanswers
@@ -153,7 +152,6 @@ func get_New_Question(category):
 	
 	if questionstatus.has(questions[category][questionnumber]) == null:
 		questionstatus[questions[category][questionnumber]] = "shown" #sets the status of the question as shown so it doesnt appear again
-
 	
 	return questions[category][questionnumber]
 

@@ -1,15 +1,15 @@
 extends Node2D
 
-#export (PackedScene) var QuestionBubble
-#export (PackedScene) var Question
 export (PackedScene) var Minigame
 export (PackedScene) var Furniture
 
+var player_exists = false
+
 func _ready():
-#	$House.show()
 #	Call method to place minigames
 	var minigame_names = ["recycling_bins","collect_dishes","cd2","do_dishes"]
 	spawn_minigames(minigame_names)
+	print(get_tree())
 
 
 # spawn furniture and games
@@ -38,14 +38,14 @@ func spawn_minigames(minigame_names: Array):
 			mini_do_dishes(furn)
 			
 		add_child(furn)
-		move_child(furn,furn.get_index() - 2)
+		move_child(furn,furn.get_index() - 1)
 
 func mini_recycling(furn):
 #	place furniture
 	furn.position = Vector2(1270,640)
 	furn.scale = Vector2(.08,.08)
 #	add texture
-	furn.get_node("TextureRect").texture = load("res://Art/Images/prullebak/4.png")
+	furn.get_node("TextureRect").texture = load("res://Art/Images/prullebak/3.png")
 	furn.get_node("TextureRect").get_node("Outline").texture = load("res://Art/Images/prullebak/4.png")
 	furn.get_node("TextureRect").get_node("Outline").margin_left = -55
 	furn.get_node("TextureRect").get_node("Outline").margin_top = -90
@@ -84,6 +84,14 @@ func mini_do_dishes(furn):
 	furn.get_node("Area2D").get_node("InteractionSpace").position = Vector2(120,200)
 	furn.get_node("Area2D").get_node("InteractionSpace").scale = Vector2(2,6)
 
+# methode te vinden in main
 #func minigame_stop():
 #	if is_instance_valid(Minigame):
 #		get_node("Minigame").minigame_not_done()
+
+
+func _on_Area2D_body_entered(body):
+	if !player_exists:
+		player_exists = true
+	else:
+		print("testing")

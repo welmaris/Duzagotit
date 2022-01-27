@@ -14,6 +14,7 @@ func update_score(change: int):
 #	Animation for the change in score?
 	score += change
 	var new = str(score)
+	goal_reached()
 	$ScoreLabel.text = "Score: " + str(score) + "/" + str(goal)
 
 # 
@@ -27,6 +28,12 @@ func show_instruction():
 func hide_instruction():
 	$RichTextLabel.hide()	
 
+func goal_reached():
+	if score >= goal:
+		print("succes!!!")
+		return true
+	return false
+	
 
 func _on_StartGame_pressed():
 	$StartButton.hide()

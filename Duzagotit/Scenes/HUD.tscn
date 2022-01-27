@@ -29,10 +29,10 @@ __meta__ = {
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_left = 428.0
-margin_top = 229.0
-margin_right = 910.0
-margin_bottom = 728.0
+margin_left = 134.0
+margin_top = 280.0
+margin_right = 616.0
+margin_bottom = 779.0
 bbcode_enabled = true
 bbcode_text = "[b]Bewegen:[/b]
 [indent]- WASD

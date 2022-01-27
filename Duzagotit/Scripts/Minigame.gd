@@ -65,17 +65,16 @@ func spawn_dish():
 	dish.position = Vector2(400,400)
 	add_child(dish)
 	move_child(dish,dish.get_index() - 1)
-	
+
 func did_a_dish():
-	$AudioStreamPlayer.stream = load("res://Art/Sound/ding.ogg")
+	play_correct()
 	$AudioStreamPlayer.play()
 	in_minigame_score += 1
 	if in_minigame_score == 5:
 		minigame_done()
 	else:
 		spawn_dish()
-	
-	
+
 func spawn_trash_cans():
 	for x in range(5):
 		var trashcan = Trashcan.instance()
@@ -86,16 +85,18 @@ func spawn_trash_cans():
 		add_child(trashcan)
 		trashcan.position = Vector2(300+300*x,800)
 
+# check if minigame has finished
 func check_done():
-	#print(get_child_count())
+	print(get_child_count())
 	if minigame_name == "collect_dishes" and get_child_count() == 6:
 		minigame_done()
 	if minigame_name == "recycling_bins" and get_child_count() == 10:
 		minigame_done()
 
+# Minigame finished succesfully
 func minigame_done():
 	yield($AudioStreamPlayer, "finished")
-	$AudioStreamPlayer.stream = load("res://Art/Sound/correct.ogg")
+	play_finished()
 	$AudioStreamPlayer.play()
 	var correct_sprite = Sprite.new()
 	correct_sprite.texture = load("res://Art/Images/correct.png")
@@ -108,7 +109,8 @@ func minigame_done():
 	add_child(minigame_show_result_timer)
 	minigame_show_result_timer.start()
 	get_parent().get_node("QuestionSpawnTimer").start()
-	
+
+
 func mgad():
 	get_parent().minigame_is_showing = false
 	get_parent().update_score(in_minigame_score)
@@ -138,14 +140,22 @@ func spawn_faucet():
 
 func _on_Click_and_Drag_correct_waste_disposal():
 	in_minigame_score += 1
-	$AudioStreamPlayer.stream = load("res://Art/Sound/ding.ogg")
+	play_correct()
 	$AudioStreamPlayer.play()
 	check_done()
 	#print("wow correct indeed")
 
-
 func _on_Click_and_Drag_incorrect_waste_disposal():
-	$AudioStreamPlayer.stream = load("res://Art/Sound/wrong.ogg")
+	play_wrong()
 	$AudioStreamPlayer.play()
 	check_done()
 	#print("hmmm not so correct actually")
+
+func play_correct():
+	$AudioStreamPlayer.stream = load("res://Art/Sound/ding.ogg")
+
+func play_wrong():
+	$AudioStreamPlayer.stream = load("res://Art/Sound/wrong.ogg")
+
+func play_finished():
+	$AudioStreamPlayer.stream = load("res://Art/Sound/correct.ogg")
