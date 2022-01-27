@@ -67,11 +67,13 @@ func spawn_teddy():
 	var bear = Teddy.instance()
 	add_child(bear)
 	move_child(bear,bear.get_index() - 1)
-	for x in range(2):
+	for x in range(3):
 		var fluff = Trashcan.instance()
 		fluff.get_node("Sprite").texture = load("res://Art/Images/beer_pluis.png")
 		fluff.get_node("Sprite").scale = Vector2(0.2,0.2)
 		fluff.position = Vector2(1100+200*x,400)
+		if x == 2:
+			fluff.position = Vector2(1200,675)
 		add_child(fluff)
 	spawn_trash(["needle"])
 	get_child(get_child_count()-1).position = Vector2(800,400)
@@ -112,6 +114,8 @@ func check_done():
 	if minigame_name == "collect_dishes" and get_child_count() == 5:
 		minigame_done()
 	if minigame_name == "recycling_bins" and get_child_count() == 9:
+		minigame_done()
+	if minigame_name == "teddybear" and get_child_count() == 6:
 		minigame_done()
 
 # Minigame finished succesfully

@@ -58,7 +58,10 @@ func _on_Click_input_event(viewport, event, shape_idx):
 func _on_Click_and_Drag_area_entered(area):
 	if("MinigameInterractObject" in area.name):
 		if wastetype == "needle":
-			print(area.name)
+			area.scale -= Vector2(0.02,0.02) 
+			if area.scale.x <= 0.8:
+				area.queue_free()
+				emit_signal("correct_waste_disposal")
 		else:
 			var bintype = "dishes"
 			if "1.png" in  area.get_node("Sprite").texture.get_path():
