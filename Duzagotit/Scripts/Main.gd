@@ -122,7 +122,7 @@ func _on_Click_Question(category):
 		else:
 			QuestionScene.get_node("B3").hide()
 
-# ?
+# calls for a minigame to start
 func _player_interract(name):
 	if !minigame_is_showing and !question_is_showing:
 		minigame_is_showing = true

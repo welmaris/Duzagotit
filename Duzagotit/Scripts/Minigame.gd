@@ -104,10 +104,14 @@ func spawn_trash_cans():
 
 # check if minigame has finished
 func check_done():
+	
+#	timeout to give it time to register change in child count
+	yield(get_tree().create_timer(1.0), "timeout")
+	
 	print(get_child_count())
-	if minigame_name == "collect_dishes" and get_child_count() == 6:
+	if minigame_name == "collect_dishes" and get_child_count() == 5:
 		minigame_done()
-	if minigame_name == "recycling_bins" and get_child_count() == 10:
+	if minigame_name == "recycling_bins" and get_child_count() == 9:
 		minigame_done()
 
 # Minigame finished succesfully

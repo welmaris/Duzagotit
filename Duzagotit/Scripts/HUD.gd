@@ -17,7 +17,6 @@ func update_score(change: int):
 	goal_reached()
 	$ScoreLabel.text = "Score: " + str(score) + "/" + str(goal)
 
-# 
 func set_goal(newGoal : int):
 	goal = newGoal
 	$ScoreLabel.text = "Score: " + str(score) + "/" + str(goal)
@@ -26,14 +25,27 @@ func show_instruction():
 	$RichTextLabel.show()
 
 func hide_instruction():
-	$RichTextLabel.hide()	
+	$RichTextLabel.clear()
+	
+	$RichTextLabel.bbcode_text = "[b]%s[/b]" % "Bewegen:"
+	$RichTextLabel.append_bbcode("[indent]%s[/indent]" % "- WASD")
+	$RichTextLabel.append_bbcode("[indent]%s[/indent]" % "- Pijltjestoetsen")
+	$RichTextLabel.newline()
+	$RichTextLabel.newline()
+	$RichTextLabel.append_bbcode("[b]%s[/b]" % "Interactie (met objecten):")
+	$RichTextLabel.append_bbcode("[indent]%s[/indent]" % "- E")
+	$RichTextLabel.append_bbcode("[indent]%s[/indent]" % "- Shift")
+	$RichTextLabel.append_bbcode("[indent]%s[/indent]" % "- Spatiebalk")
+	$RichTextLabel.append_bbcode("[indent]%s[/indent]" % "- Enter")
+
+#	$RichTextLabel.hide()	
 
 func goal_reached():
 	if score >= goal:
+		var success
 		print("succes!!!")
 		return true
 	return false
-	
 
 func _on_StartGame_pressed():
 	$StartButton.hide()
