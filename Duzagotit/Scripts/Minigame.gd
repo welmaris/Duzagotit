@@ -58,7 +58,8 @@ func spawn_dish_bowl():
 	var dishbowl = Trashcan.instance()
 	dishbowl.get_node("Sprite").texture = load("res://Art/Images/wasbak.png")
 	dishbowl.get_node("Sprite").scale = Vector2(1,1)
-	dishbowl.get_node("CollisionShape2D").scale = Vector2(1,2.5)
+	dishbowl.get_node("CollisionShape2D").scale = Vector2(2.5,2.5)
+	dishbowl.get_node("CollisionShape2D").position = Vector2(0,150)
 	
 	add_child(dishbowl)
 	dishbowl.position = Vector2(1300,500)
@@ -83,7 +84,7 @@ func spawn_dish():
 	dish.get_node("Sprite").texture = load("res://Art/Images/plate.png")
 	dish.position = Vector2(400,400)
 	add_child(dish)
-	move_child(dish,dish.get_index() - 1)
+	#move_child(dish,dish.get_index() - 1)
 
 func did_a_dish():
 	play_correct()

@@ -9,6 +9,7 @@
 extents = Vector2( 35.1229, 15.8501 )
 
 [node name="House" type="Node2D"]
+position = Vector2( 53, 158 )
 
 [node name="Floor" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )

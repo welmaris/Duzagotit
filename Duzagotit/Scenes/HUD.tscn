@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://fonts/xolonium/Xolonium.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Scripts/HUD.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/RadioButton.gd" type="Script" id=3]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 2 )
@@ -18,10 +19,11 @@ __meta__ = {
 }
 
 [node name="StartButton" type="Button" parent="."]
-margin_left = 808.0
-margin_top = 714.0
-margin_right = 1064.0
-margin_bottom = 778.0
+margin_left = 744.0
+margin_top = 700.0
+margin_right = 1000.0
+margin_bottom = 764.0
+rect_scale = Vector2( 1.5, 1.5 )
 custom_fonts/font = ExtResource( 1 )
 text = "Start"
 __meta__ = {
@@ -35,11 +37,90 @@ margin_right = 616.0
 margin_bottom = 779.0
 bbcode_enabled = true
 bbcode_text = "[b]Welkom!![/b]
-Hier komt nog een uitleg voor het spel!!!"
+Duzagotit is een leerzaam spel over duurzaamheid.
+Loop door de huizen heen en los alle problemen op.
+Klik op de vraagbubbels om vragen te beantwoorden.
+Verzamel alle punten om naar het volgende huis te gaan. (Work in progress)
+
+Selecteer eerst het huis waar je heen wilt."
 text = "Welkom!!
-Hier komt nog een uitleg voor het spel!!!"
+Duzagotit is een leerzaam spel over duurzaamheid.
+Loop door de huizen heen en los alle problemen op.
+Klik op de vraagbubbels om vragen te beantwoorden.
+Verzamel alle punten om naar het volgende huis te gaan. (Work in progress)
+
+Selecteer eerst het huis waar je heen wilt."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Select" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="HouseSelect1" type="Button" parent="Select"]
+margin_left = 808.0
+margin_top = 150.0
+margin_right = 1064.0
+margin_bottom = 214.0
+custom_fonts/font = ExtResource( 1 )
+toggle_mode = true
+pressed = true
+text = "Huis 1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HouseSelect2" type="Button" parent="Select"]
+margin_left = 808.0
+margin_top = 250.0
+margin_right = 1064.0
+margin_bottom = 314.0
+custom_fonts/font = ExtResource( 1 )
+toggle_mode = true
+text = "Huis 2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HouseSelect3" type="Button" parent="Select"]
+margin_left = 808.0
+margin_top = 350.0
+margin_right = 1064.0
+margin_bottom = 414.0
+custom_fonts/font = ExtResource( 1 )
+toggle_mode = true
+text = "Huis 3"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HouseSelect4" type="Button" parent="Select"]
+margin_left = 808.0
+margin_top = 450.0
+margin_right = 1064.0
+margin_bottom = 514.0
+custom_fonts/font = ExtResource( 1 )
+toggle_mode = true
+text = "Huis 4"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HouseSelect5" type="Button" parent="Select"]
+margin_left = 808.0
+margin_top = 550.0
+margin_right = 1064.0
+margin_bottom = 614.0
+custom_fonts/font = ExtResource( 1 )
+toggle_mode = true
+text = "Huis 5"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [connection signal="pressed" from="StartButton" to="." method="_on_StartGame_pressed"]
+[connection signal="pressed" from="Select/HouseSelect1" to="Select" method="_on_HouseSelect1_pressed"]
+[connection signal="pressed" from="Select/HouseSelect2" to="Select" method="_on_HouseSelect2_pressed"]
+[connection signal="pressed" from="Select/HouseSelect3" to="Select" method="_on_HouseSelect3_pressed"]
+[connection signal="pressed" from="Select/HouseSelect4" to="Select" method="_on_HouseSelect4_pressed"]
+[connection signal="pressed" from="Select/HouseSelect5" to="Select" method="_on_HouseSelect5_pressed"]

@@ -3,6 +3,7 @@ signal start_game
 
 var score = 0
 var goal = 150
+var selected = 1
 
 # Reset the score to 0
 func reset_score():
@@ -23,6 +24,20 @@ func set_goal(newGoal : int):
 
 func show_instruction():
 	$RichTextLabel.show()
+
+func hide_select():
+	$Select/HouseSelect1.hide()
+	$Select/HouseSelect2.hide()
+	$Select/HouseSelect3.hide()
+	$Select/HouseSelect4.hide()
+	$Select/HouseSelect5.hide()
+
+func show_select():
+	$Select/HouseSelect1.show()
+	$Select/HouseSelect2.show()
+	$Select/HouseSelect3.show()
+	$Select/HouseSelect4.show()
+	$Select/HouseSelect5.show()
 
 func hide_instruction():
 	$RichTextLabel.clear()
@@ -49,5 +64,6 @@ func goal_reached():
 
 func _on_StartGame_pressed():
 	$StartButton.hide()
+	hide_select()
 	hide_instruction()
 	emit_signal("start_game")

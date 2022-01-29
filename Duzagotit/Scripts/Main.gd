@@ -4,6 +4,10 @@ export (PackedScene) var QuestionBubble
 export (PackedScene) var Question
 export (PackedScene) var Minigame
 export (PackedScene) var House1
+export (PackedScene) var House2
+export (PackedScene) var House3
+export (PackedScene) var House4
+export (PackedScene) var House5
 
 # var score = 0
 var questionstatus = {}
@@ -18,7 +22,7 @@ var scoring_per_house = [0,0,0,0,0,0]
 
 # main
 func new_game():
-	house_select()
+	house_select($HUD.selected)
 	$Player.start(Vector2(600,900))
 	$Player.show()
 	$HUD.reset_score()
@@ -30,9 +34,19 @@ func _ready():
 	$Player.hide()
 	randomize()
 
-func house_select():
-	housenumber = 1
-	house = House1.instance()
+func house_select(index):
+	housenumber = index
+	if index == 1:
+		house = House1.instance()
+	if index == 2:
+		house = House2.instance()
+	if index == 3:
+		house = House3.instance()
+	if index == 4:
+		house = House4.instance()
+	if index == 5:
+		house = House5.instance()
+	
 	add_child(house)
 	move_child(house,house.get_index() - 3)
 
