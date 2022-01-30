@@ -19,20 +19,28 @@ var can_still_press_answer = true
 var house
 var housenumber = 0
 var scoring_per_house = [0,0,0,0,0,0]
+var totalscore = 0
 
 # main
 func new_game():
 	house_select($HUD.selected)
 	$Player.start(Vector2(600,900))
 	$Player.show()
-	$HUD.reset_score()
 	$QuestionSpawnTimer.start()
 	#remove_child(house)
 
 # main
 func _ready():
 	$Player.hide()
+	$HUD.reset_score()
 	randomize()
+
+func goto_house_select():
+	$House.queue_free()
+	$HUD.show_select()
+	$HUD.update_house_score(totalscore)
+	$Player.hide()
+	$QuestionSpawnTimer.stop()
 
 func house_select(index):
 	housenumber = index
@@ -170,6 +178,5 @@ func get_New_Question(category):
 	return questions[category][questionnumber]
 
 func update_score(score: int):
-	scoring_per_house[housenumber] == score
-	scoring_per_house[0] == scoring_per_house[1] + scoring_per_house[2] + scoring_per_house[3] + scoring_per_house[4] + scoring_per_house[5]
+	totalscore += score
 	$HUD.update_score(score)
