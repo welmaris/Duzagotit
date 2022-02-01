@@ -48,10 +48,10 @@ __meta__ = {
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_left = 112.594
-margin_top = 275.498
-margin_right = 594.594
-margin_bottom = 500.498
+margin_left = 111.811
+margin_top = 275.0
+margin_right = 593.811
+margin_bottom = 647.0
 mouse_filter = 2
 bbcode_enabled = true
 bbcode_text = "[b]Welkom!![/b]

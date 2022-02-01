@@ -97,7 +97,7 @@ func answer_pressed(buttonint):
 		add_child(timer) 
 		timer.start() 
 
-# 
+
 func _on_answer_show_timeout():
 	if is_instance_valid(QuestionScene):
 		QuestionScene.queue_free()
@@ -170,7 +170,12 @@ func get_New_Question(category):
 		print("EVERYTHING IS BROKEN!!! (file didnt parse)")
 	var questions = questionparse.result
 	var numberofquestions = len(questions[category])
+	var array_of_questions_not_answered
+	if array_of_questions_not_answered != [0]*numberofquestions:
+		array_of_questions_not_answered = [0]*numberofquestions
+	print(array_of_questions_not_answered)
 	var questionnumber = randi()% numberofquestions
+	array_of_questions_not_answered[questionnumber] += 1
 	
 	if questionstatus.has(questions[category][questionnumber]) == null:
 		questionstatus[questions[category][questionnumber]] = "shown" #sets the status of the question as shown so it doesnt appear again
