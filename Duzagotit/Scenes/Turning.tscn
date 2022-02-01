@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Area2D.gd" type="Script" id=1]
-[ext_resource path="res://Art/Images/steeringwheel.png" type="Texture" id=2]
+[ext_resource path="res://Art/Images/thermostatknob.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 248.448
+radius = 153.964
 
 [node name="TurningArea" type="Area2D"]
 position = Vector2( 1250.87, 606.387 )

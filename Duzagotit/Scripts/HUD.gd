@@ -2,7 +2,7 @@ extends CanvasLayer
 signal start_game
 
 var score = 0
-var goal = 4
+var goal = 40
 var selected = 1
 var house_select_enabled_index = 1 # which house is the last unlocked house
 var sound_player
@@ -90,7 +90,7 @@ func goal_reached():
 		message_timer.one_shot = true
 		add_child(message_timer) 
 		message_timer.start() 
-		set_goal(goal + 5)
+		set_goal(goal + 50)
 		return true
 	return false
 

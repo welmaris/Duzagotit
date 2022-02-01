@@ -24,7 +24,6 @@ var array_of_questions_not_answered = []
 
 # main
 func new_game():
-	print("set player pos")
 	$Player.position = (Vector2(600,900))
 	house_select($HUD.selected)
 	$Player.show()

@@ -15,8 +15,10 @@ func _process(delta):
 		var previous_rotation = rotation
 		mouse_offset = position - get_viewport().get_mouse_position()
 		rotation = atan2(mouse_offset.y,mouse_offset.x) + rotation_offset
-		total_rotation += rotation - previous_rotation
+		if(abs(rotation - previous_rotation) < 1):
+			total_rotation += rotation - previous_rotation
 		#print(total_rotation)
+		get_parent().update_temperature(total_rotation)
 
 func _input(event):
 	if event is InputEventMouseButton:

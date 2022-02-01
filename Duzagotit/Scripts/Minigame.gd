@@ -7,6 +7,7 @@ export (PackedScene) var FaucetKnob
 export (PackedScene) var Dishes
 export (PackedScene) var Teddy
 export (PackedScene) var LampOnOff
+export (PackedScene) var Turning
 
 signal finished
 
@@ -16,6 +17,8 @@ signal finished
 var minigame_name = ""
 var in_minigame_score = 0
 var in_minigame_max_score = 0
+
+var thermostat
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,8 +39,8 @@ func _ready():
 		spawn_dish_bowl()
 		$Explanation.text = "Verzamel alle afwas"
 	if minigame_name == "do_dishes":
-		spawn_trash(["sponge"])
 		spawn_dish()
+		spawn_trash(["sponge"])
 		$Explanation.text = "Poets de borden schoon met de spons"
 	if minigame_name == "teddybear":
 		spawn_teddy()
@@ -45,6 +48,9 @@ func _ready():
 	if minigame_name == "lamp":
 		spawn_lamp()
 		$Explanation.text = "Zet de lamp uit om stroom te besparen"
+	if minigame_name == "thermostat":
+		spawn_thermostat()
+		$Explanation.text = "Zet de verwarming lager om stroom te besparen"
 
 func spawn_trash(possible_wastetype): # spawns a trash item
 	$Path2D/PathFollow2D.offset = randi()
@@ -71,6 +77,11 @@ func spawn_dish_bowl():
 	
 func spawn_teddy():
 	var bear = Teddy.instance()
+	bear.get_node("Wool").show()
+	bear.get_node("Bear").texture = load("res://Art/Images/beer_heel.png")
+	bear.get_node("Bear").scale = Vector2(0.6,0.6)
+	bear.get_node("Bear").position = Vector2(1263,429)
+	bear.get_node("Temperature").hide()
 	add_child(bear)
 	move_child(bear,bear.get_index() - 1)
 	for x in range(3):
@@ -125,9 +136,13 @@ func check_done():
 		minigame_done()
 
 # Minigame finished succesfully
-func minigame_done():
-	yield($AudioStreamPlayer, "finished")
-	play_finished()
+func minigame_done(_wrong = 0):
+	#yield($AudioStreamPlayer, "finished")
+	print("gotherer")
+	if(_wrong == 1):
+		play_wrong()
+	else:
+		play_finished()
 	$AudioStreamPlayer.play()
 	var correct_sprite = Sprite.new()
 	correct_sprite.texture = load("res://Art/Images/correct.png")
@@ -170,6 +185,26 @@ func spawn_faucet():
 func spawn_lamp():
 	var lamp = LampOnOff.instance()
 	add_child(lamp)
+
+func spawn_thermostat():
+	thermostat = Teddy.instance()
+	thermostat.get_node("Bear").texture = load("res://Art/Images/thermostat.png")
+	thermostat.get_node("Bear").scale = Vector2(2.2,2.2)
+	thermostat.get_node("Bear").position = Vector2(950,600)
+	thermostat.get_node("Wool").hide()
+	thermostat.get_node("Temperature").show()
+	var thermostatknob = Turning.instance()
+	add_child(thermostat)
+	add_child(thermostatknob)
+
+func update_temperature(rotation):
+	thermostat.get_node("Temperature").text = str(round(50+rotation)/2)
+	if round(50+rotation)/2 == 19:
+		in_minigame_score = 5
+		minigame_done()
+	if round(50+rotation)/2 == 30:
+		in_minigame_score = 0
+		minigame_done(1)
 
 func _on_Click_and_Drag_correct_waste_disposal():
 	in_minigame_score += 1

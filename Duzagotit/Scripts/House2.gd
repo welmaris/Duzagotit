@@ -7,7 +7,7 @@ var player_exists = false
 
 func _ready():
 #	Call method to place minigames
-	var minigame_names = ["lamp"]
+	var minigame_names = ["lamp","thermostat"]
 	spawn_minigames(minigame_names)
 #	print(get_tree())
 
@@ -40,6 +40,8 @@ func spawn_minigames(minigame_names: Array):
 			mini_teddybear(furn)
 		elif name == "lamp":
 			mini_lamp_onoff(furn)
+		elif name == "thermostat":
+			mini_thermostat(furn)
 					
 		add_child(furn)
 		move_child(furn,furn.get_index() - 1)
@@ -114,6 +116,21 @@ func mini_lamp_onoff(furn):
 	furn.get_node("CollisionShape2D").scale = Vector2(0.2,1)
 	furn.get_node("Area2D").get_node("InteractionSpace").position = Vector2(0,0)
 	furn.get_node("Area2D").get_node("InteractionSpace").scale = Vector2(1,1)
+	pass
+	
+func mini_thermostat(furn):
+#	place and add texture
+	furn.position = Vector2(910,500)
+	furn.scale = Vector2(0.1,0.1)
+	furn.get_node("TextureRect").texture = load("res://Art/Images/thermostat.png")
+	furn.get_node("TextureRect").get_node("Outline").texture = load("res://Art/Images/thermostat.png")
+	furn.get_node("TextureRect").get_node("Outline").margin_left = -20
+	furn.get_node("TextureRect").get_node("Outline").margin_top = -10
+#	add collision
+	furn.get_node("CollisionShape2D").position = Vector2(212,22)
+	furn.get_node("CollisionShape2D").scale = Vector2(3,2)
+	furn.get_node("Area2D").get_node("InteractionSpace").position = Vector2(0,350)
+	furn.get_node("Area2D").get_node("InteractionSpace").scale = Vector2(5,10)
 	pass
 	
 
