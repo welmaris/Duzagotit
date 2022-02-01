@@ -67,7 +67,10 @@ func hide_instruction():
 	$RichTextLabel.append_bbcode("[indent]%s[/indent]" % "- Shift")
 	$RichTextLabel.append_bbcode("[indent]%s[/indent]" % "- Spatiebalk")
 	$RichTextLabel.append_bbcode("[indent]%s[/indent]" % "- Enter")
-
+	$RichTextLabel.newline()
+	$RichTextLabel.newline()
+	$RichTextLabel.append_bbcode("[b]%s[/b]" % "Minigame verlaten:")
+	$RichTextLabel.append_bbcode("[indent]%s[/indent]" % "- Escape")
 #	$RichTextLabel.hide()	
 
 func goal_reached():

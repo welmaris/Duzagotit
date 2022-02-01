@@ -7,7 +7,7 @@ var player_exists = false
 
 func _ready():
 #	Call method to place minigames
-	var minigame_names = ["recycling_bins","collect_dishes","cd2","do_dishes","teddybear", "lamp"]
+	var minigame_names = ["recycling_bins","collect_dishes","cd2","do_dishes","teddybear"]
 	spawn_minigames(minigame_names)
 #	print(get_tree())
 

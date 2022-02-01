@@ -12,6 +12,7 @@ export (PackedScene) var House5
 
 var current_question_correct_answers = null
 var QuestionScene
+var MinigameScene
 var questionnumber
 var question_is_showing = false
 var minigame_is_showing = false
@@ -23,8 +24,9 @@ var array_of_questions_not_answered = []
 
 # main
 func new_game():
+	print("set player pos")
+	$Player.position = (Vector2(600,900))
 	house_select($HUD.selected)
-	$Player.start(Vector2(600,900))
 	$Player.show()
 	$QuestionSpawnTimer.start()
 	#remove_child(house)
@@ -41,6 +43,9 @@ func goto_house_select():
 	$HUD.update_house_score(totalscore)
 	$Player.hide()
 	$QuestionSpawnTimer.stop()
+	for child in self.get_children(): 
+			if (child.has_method("_on_VisibilityNotifier2D_screen_exited")): 
+				child.queue_free()
 
 func house_select(index):
 	housenumber = index
@@ -114,7 +119,7 @@ func _on_answer_show_timeout():
 
 # stopt minigame na drukken op esc
 func minigame_stop():
-	if is_instance_valid(Minigame):
+	if is_instance_valid(MinigameScene):
 		get_node("Minigame").minigame_not_done()
 
 # questions mc
@@ -163,7 +168,7 @@ func _player_interract(name):
 			if (child.has_method("_on_VisibilityNotifier2D_screen_exited")): 
 				child.queue_free()
 		$QuestionSpawnTimer.stop()
-		var MinigameScene = Minigame.instance()
+		MinigameScene = Minigame.instance()
 		
 		MinigameScene.minigame_name = name
 		add_child(MinigameScene)

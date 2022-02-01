@@ -94,7 +94,6 @@ margin_top = 250.0
 margin_right = 1064.0
 margin_bottom = 314.0
 custom_fonts/font = ExtResource( 1 )
-disabled = true
 toggle_mode = true
 text = "Huis 2"
 __meta__ = {
