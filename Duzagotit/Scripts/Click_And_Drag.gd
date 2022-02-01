@@ -53,8 +53,6 @@ func _on_Click_input_event(viewport, event, shape_idx):
 			dragging = false
 		mouse_offset = position - event.position
 
-
-
 func _on_Click_and_Drag_area_entered(area):
 	if("MinigameInterractObject" in area.name):
 		if wastetype == "needle":

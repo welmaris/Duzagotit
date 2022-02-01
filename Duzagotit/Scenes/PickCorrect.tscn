@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Art/Calibri.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Art/Images/FridgeAAA.png" type="Texture" id=2]
+[ext_resource path="res://Art/Images/FridgeD.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/PickCorrect.gd" type="Script" id=4]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="."]
+visible = false
+margin_right = 1920.0
+margin_bottom = 194.0
+custom_fonts/font = ExtResource( 1 )
+text = "Welke Koelkast kunnen je ouders het beste kopen?"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TB0" type="TextureButton" parent="."]
+margin_left = 461.0
+margin_top = 190.0
+margin_right = 1541.0
+margin_bottom = 2410.0
+rect_scale = Vector2( 0.4, 0.4 )
+texture_normal = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TB1" type="TextureButton" parent="."]
+margin_left = 969.0
+margin_top = 191.0
+margin_right = 2049.0
+margin_bottom = 2411.0
+rect_scale = Vector2( 0.4, 0.4 )
+texture_normal = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="TB0" to="." method="_on_TB0_pressed"]
+[connection signal="pressed" from="TB1" to="." method="_on_TB1_pressed"]

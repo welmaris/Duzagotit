@@ -8,6 +8,7 @@
 [ext_resource path="res://Scenes/Teddy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/LampOnOff.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Turning.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/PickCorrect.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -32,6 +33,7 @@ Dishes = ExtResource( 4 )
 Teddy = ExtResource( 6 )
 LampOnOff = ExtResource( 7 )
 Turning = ExtResource( 8 )
+Fridge = ExtResource( 8 )
 
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2( -341.28, -91.4471 )
