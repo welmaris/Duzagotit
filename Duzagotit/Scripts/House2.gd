@@ -7,7 +7,9 @@ var player_exists = false
 
 func _ready():
 #	Call method to place minigames
-	var minigame_names = ["lamp"]
+
+#	var minigame_names = ["recycling_bins","collect_dishes","cd2","do_dishes","teddybear", "lamp"]
+	var minigame_names = ["lamp", "lamp2"]
 	spawn_minigames(minigame_names)
 #	print(get_tree())
 
@@ -39,8 +41,12 @@ func spawn_minigames(minigame_names: Array):
 		elif name == "teddybear":
 			mini_teddybear(furn)
 		elif name == "lamp":
-			mini_lamp_onoff(furn)
-					
+			furn.position = Vector2(390, 750)
+			mini_lamp(furn)
+		elif name == "lamp2":
+			furn.position = Vector2(1350, 750)
+			mini_lamp(furn)
+
 		add_child(furn)
 		move_child(furn,furn.get_index() - 1)
 
@@ -67,6 +73,7 @@ func mini_collect_dishes(furn):
 	furn.get_node("TextureRect").get_node("Outline").texture = load("res://Art/Images/plate.png")
 	furn.get_node("TextureRect").get_node("Outline").margin_left = -20
 	furn.get_node("TextureRect").get_node("Outline").margin_top = -20
+#	furn.get_node("TextureRect").get_node("Outline").
 #	add collision
 	furn.get_node("CollisionShape2D").position = Vector2(200,38)
 	furn.get_node("CollisionShape2D").scale = Vector2(5,2)
@@ -102,20 +109,19 @@ func mini_teddybear(furn):
 	furn.get_node("Area2D").get_node("InteractionSpace").position = Vector2(250,200)
 	furn.get_node("Area2D").get_node("InteractionSpace").scale = Vector2(10,40)
 
-func mini_lamp_onoff(furn):
+func mini_lamp(furn):
 #	place and add texture
-	furn.position = Vector2(448, 924)
+	furn.scale = Vector2(1.5,1.5)
+
 	furn.get_node("TextureRect").texture = load("res://Art/Images/pixel_lamp_on.png")
 	furn.get_node("TextureRect").get_node("Outline").texture = load("res://Art/Images/pixel_lamp_on.png")
-	furn.get_node("TextureRect").get_node("Outline").margin_left = 0
-	furn.get_node("TextureRect").get_node("Outline").margin_top = 0
+	furn.get_node("TextureRect").get_node("Outline").margin_left = -1
+	furn.get_node("TextureRect").get_node("Outline").margin_top = -2
 #	add collision
 	furn.get_node("CollisionShape2D").position = Vector2(12,22)
 	furn.get_node("CollisionShape2D").scale = Vector2(0.2,1)
-	furn.get_node("Area2D").get_node("InteractionSpace").position = Vector2(0,0)
-	furn.get_node("Area2D").get_node("InteractionSpace").scale = Vector2(1,1)
-	pass
-	
+	furn.get_node("Area2D").get_node("InteractionSpace").position = Vector2(25,10)
+	furn.get_node("Area2D").get_node("InteractionSpace").scale = Vector2(.6,1)
 
 func _on_Area2D_body_entered(body):
 	if !player_exists:

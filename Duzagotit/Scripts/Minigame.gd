@@ -8,8 +8,6 @@ export (PackedScene) var Dishes
 export (PackedScene) var Teddy
 export (PackedScene) var LampOnOff
 
-signal finished
-
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -43,6 +41,7 @@ func _ready():
 		spawn_teddy()
 		$Explanation.text = "Naai de teddybeer weer dicht"
 	if minigame_name == "lamp":
+		in_minigame_max_score = 2
 		spawn_lamp()
 		$Explanation.text = "Zet de lamp uit om stroom te besparen"
 
@@ -126,7 +125,8 @@ func check_done():
 
 # Minigame finished succesfully
 func minigame_done():
-	yield($AudioStreamPlayer, "finished")
+	if $AudioStreamPlayer.playing:
+		yield($AudioStreamPlayer, "finished")
 	play_finished()
 	$AudioStreamPlayer.play()
 	var correct_sprite = Sprite.new()
@@ -152,8 +152,8 @@ func mgad():
 					if x.minigame_name == "collect_dishes" and x.minigame_name == minigame_name and len(x.nearby_areas) > 0:
 						if x.nearby_areas[0] == get_parent().get_node("Player"):
 							x.queue_free()
-		#			else:
-		#				x.get_node("TextureRect").get_node("Outline").scale = Vector2(0,0)
+#					else:
+#						x.get_node("TextureRect").get_node("Outline").scale = Vector2(0,0)
 		
 	queue_free()
 
@@ -169,6 +169,7 @@ func spawn_faucet():
 
 func spawn_lamp():
 	var lamp = LampOnOff.instance()
+	lamp.connect("finished", self, "lamp_off")
 	add_child(lamp)
 
 func _on_Click_and_Drag_correct_waste_disposal():
@@ -183,6 +184,10 @@ func _on_Click_and_Drag_incorrect_waste_disposal():
 	$AudioStreamPlayer.play()
 	check_done()
 	#print("hmmm not so correct actually")
+
+func lamp_off():
+	in_minigame_score += 1
+	minigame_done()
 
 func play_correct():
 	$AudioStreamPlayer.stream = load("res://Art/Sound/ding.ogg")

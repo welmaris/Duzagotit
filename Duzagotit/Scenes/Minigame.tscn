@@ -72,5 +72,3 @@ __meta__ = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource( 4 )
-
-[connection signal="finished" from="." to="." method="minigame_done"]

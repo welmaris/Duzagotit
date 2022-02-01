@@ -8,8 +8,8 @@
 [ext_resource path="res://Scenes/Furniture.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Minigame.tscn" type="PackedScene" id=7]
 
-[sub_resource type="ConvexPolygonShape2D" id=1]
-points = PoolVector2Array( 64, 32, 0, 32, 0, 0, 64, 0 )
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 41.5, 10.5 )
 
 [node name="House" type="Node2D"]
 position = Vector2( 53, 158 )
@@ -35,26 +35,26 @@ cell_size = Vector2( 32, 32 )
 format = 1
 tile_data = PoolIntArray( 917530, 0, 0, 917531, 0, 0, 983066, 1, 0, 983067, 1, 0, 1048602, 0, 0, 1048603, 0, 0, 1114138, 1, 0, 1114139, 1, 0 )
 
-[node name="Furniture" type="TileMap" parent="."]
+[node name="furniture" type="TileMap" parent="."]
 scale = Vector2( 1.5, 1.5 )
 tile_set = ExtResource( 4 )
 cell_size = Vector2( 8, 8 )
 format = 1
-tile_data = PoolIntArray( 589856, 142, 0, 589886, 86, 0, 589911, 154, 0, 589933, 154, 0, 655409, 151, 0, 852040, 14, 0, 852064, 82, 0, 917551, 150, 0, 917611, 92, 0, 983123, 96, 0, 1114199, 36, 0, 1114222, 34, 0, 1441824, 146, 0, 1966193, 15, 0, 2752545, 104, 0, 2752550, 106, 0, 2752559, 104, 0, 2752565, 117, 0, 2883660, 15, 0, 2883687, 76, 0, 2949218, 217, 0, 3014739, 68, 0, 3014747, 215, 0, 3014751, 74, 0, 3080254, 95, 0, 3080255, 128, 0, 3342407, 198, 0, 3407934, 12, 0, 3538985, 30, 0, 3604521, 64, 0, 3670115, 35, 0, 3670122, 36, 0, 3735654, 96, 0, 3866723, 35, 0, 3866730, 36, 0, 4063346, 127, 0 )
+tile_data = PoolIntArray( 589856, 142, 0, 589886, 86, 0, 589911, 154, 0, 589933, 154, 0, 655409, 151, 0, 852040, 14, 0, 852064, 82, 0, 917551, 150, 0, 917611, 92, 0, 983123, 96, 0, 1114199, 36, 0, 1114222, 34, 0, 1441824, 146, 0, 1966193, 15, 0, 2752545, 104, 0, 2752550, 106, 0, 2752559, 104, 0, 2752565, 117, 0, 2883660, 15, 0, 2883687, 76, 0, 2949218, 217, 0, 3014739, 68, 0, 3014747, 215, 0, 3014751, 74, 0, 3080254, 95, 0, 3080255, 128, 0, 3342407, 198, 0, 3407934, 12, 0, 3538985, 30, 0, 3604521, 64, 0, 3670115, 35, 0, 3670122, 36, 0, 3735654, 96, 0, 3866723, 35, 0, 3866730, 36, 0 )
 
-[node name="Furniture2" type="TileMap" parent="."]
+[node name="furniture2" type="TileMap" parent="."]
 scale = Vector2( 1.5, 1.5 )
 tile_set = ExtResource( 4 )
 cell_size = Vector2( 2, 2 )
 format = 1
-tile_data = PoolIntArray( 3342767, 130, 0, 10682800, 174, 0, 11927900, 149, 0, 16580737, 127, 0 )
+tile_data = PoolIntArray( 3342767, 130, 0, 10682800, 174, 0, 11927900, 149, 0 )
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2( -94, 299 )
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 926.077, 533.014 )
+position = Vector2( 958, 554 )
 shape = SubResource( 1 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
