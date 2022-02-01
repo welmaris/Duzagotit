@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/Houses/TileMaps/TilemapStairs.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Houses/TileMaps/TilemapFloor.tres" type="TileSet" id=2]
@@ -8,10 +8,17 @@
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 64, 32, 0, 32, 0, 0, 64, 0 )
+[ext_resource path="res://Scenes/Furniture.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Minigame.tscn" type="PackedScene" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 41.5, 12 )
 
 [node name="House" type="Node2D"]
 position = Vector2( 53, 158 )
 script = ExtResource( 5 )
+Minigame = ExtResource( 7 )
+Furniture = ExtResource( 6 )
 
 [node name="Floor" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )

@@ -136,7 +136,6 @@ func minigame_done():
 	minigame_show_result_timer.start()
 	get_parent().get_node("QuestionSpawnTimer").start()
 
-
 func mgad():
 	get_parent().minigame_is_showing = false
 	get_parent().update_score(in_minigame_score)

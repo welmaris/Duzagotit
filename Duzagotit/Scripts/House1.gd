@@ -9,7 +9,7 @@ func _ready():
 #	Call method to place minigames
 	var minigame_names = ["recycling_bins","collect_dishes","cd2","do_dishes","teddybear"]
 	spawn_minigames(minigame_names)
-	print(get_tree())
+#	print(get_tree())
 
 
 # spawn furniture and games
@@ -86,7 +86,6 @@ func mini_do_dishes(furn):
 	furn.get_node("Area2D").get_node("InteractionSpace").position = Vector2(120,200)
 	furn.get_node("Area2D").get_node("InteractionSpace").scale = Vector2(2,6)
 
-
 func mini_teddybear(furn):
 #	place and add texture
 	furn.position = Vector2(1335,325)
@@ -105,7 +104,6 @@ func mini_teddybear(furn):
 #func minigame_stop():
 #	if is_instance_valid(Minigame):
 #		get_node("Minigame").minigame_not_done()
-
 
 func _on_Area2D_body_entered(body):
 	if !player_exists:
