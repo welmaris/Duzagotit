@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/Minigame.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Click_And_Drag.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Art/Calibri.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Scenes/Teddy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/LampOnOff.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/PickCorrect.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -30,6 +31,7 @@ Trashcan = ExtResource( 3 )
 Dishes = ExtResource( 4 )
 Teddy = ExtResource( 6 )
 LampOnOff = ExtResource( 7 )
+Fridge = ExtResource( 8 )
 
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2( -341.28, -91.4471 )

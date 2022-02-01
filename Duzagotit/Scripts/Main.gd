@@ -110,7 +110,6 @@ func answer_pressed(buttonint):
 		add_child(timer) 
 		timer.start() 
 
-
 func _on_answer_show_timeout():
 	if is_instance_valid(QuestionScene):
 		QuestionScene.queue_free()
@@ -172,7 +171,6 @@ func _player_interract(name):
 		
 		MinigameScene.minigame_name = name
 		add_child(MinigameScene)
-	
 
 # questions mc
 func get_New_Question(category):

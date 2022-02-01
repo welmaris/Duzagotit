@@ -7,6 +7,7 @@ export (PackedScene) var FaucetKnob
 export (PackedScene) var Dishes
 export (PackedScene) var Teddy
 export (PackedScene) var LampOnOff
+export (PackedScene) var Fridge
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -40,10 +41,12 @@ func _ready():
 	if minigame_name == "teddybear":
 		spawn_teddy()
 		$Explanation.text = "Naai de teddybeer weer dicht"
-	if minigame_name == "lamp":
-		in_minigame_max_score = 2
+	if minigame_name == "lamp" or minigame_name == "lamp2":
 		spawn_lamp()
 		$Explanation.text = "Zet de lamp uit om stroom te besparen"
+	if minigame_name == "fridge":
+		spawn_fridge()
+		$Explanation.text = "Welke Koelkast kunnen je ouders het beste kopen?"
 
 func spawn_trash(possible_wastetype): # spawns a trash item
 	$Path2D/PathFollow2D.offset = randi()
@@ -67,7 +70,7 @@ func spawn_dish_bowl():
 	
 	add_child(dishbowl)
 	dishbowl.position = Vector2(1300,500)
-	
+
 func spawn_teddy():
 	var bear = Teddy.instance()
 	add_child(bear)
@@ -92,7 +95,6 @@ func spawn_dish():
 
 func did_a_dish():
 	play_correct()
-	$AudioStreamPlayer.play()
 	in_minigame_score += 1
 	if in_minigame_score == 5:
 		minigame_done()
@@ -122,13 +124,13 @@ func check_done():
 		minigame_done()
 	if minigame_name == "teddybear" and get_child_count() == 6:
 		minigame_done()
+		
 
 # Minigame finished succesfully
 func minigame_done():
 	if $AudioStreamPlayer.playing:
 		yield($AudioStreamPlayer, "finished")
 	play_finished()
-	$AudioStreamPlayer.play()
 	var correct_sprite = Sprite.new()
 	correct_sprite.texture = load("res://Art/Images/correct.png")
 	correct_sprite.position = Vector2(500,500)
@@ -172,16 +174,20 @@ func spawn_lamp():
 	lamp.connect("finished", self, "lamp_off")
 	add_child(lamp)
 
+func spawn_fridge():
+	var fridge = Fridge.instance()
+	fridge.connect("wrong", self, "play_wrong")
+	fridge.connect("correct", self, "fridge_correct")
+	add_child(fridge)
+
 func _on_Click_and_Drag_correct_waste_disposal():
 	in_minigame_score += 1
 	play_correct()
-	$AudioStreamPlayer.play()
 	check_done()
 	#print("wow correct indeed")
 
 func _on_Click_and_Drag_incorrect_waste_disposal():
 	play_wrong()
-	$AudioStreamPlayer.play()
 	check_done()
 	#print("hmmm not so correct actually")
 
@@ -189,11 +195,18 @@ func lamp_off():
 	in_minigame_score += 1
 	minigame_done()
 
+func fridge_correct():
+	in_minigame_score += 2
+	minigame_done()
+
 func play_correct():
 	$AudioStreamPlayer.stream = load("res://Art/Sound/ding.ogg")
 
 func play_wrong():
+	print("it's wrong")
 	$AudioStreamPlayer.stream = load("res://Art/Sound/wrong.ogg")
+	$AudioStreamPlayer.play()
 
 func play_finished():
 	$AudioStreamPlayer.stream = load("res://Art/Sound/correct.ogg")
+	$AudioStreamPlayer.play()
