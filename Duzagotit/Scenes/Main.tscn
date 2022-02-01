@@ -26,7 +26,6 @@ House2 = ExtResource( 5 )
 layer = 0
 
 [node name="QuestionSpawnTimer" type="Timer" parent="."]
-wait_time = 12.5
 
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2( -47.1302, -29.344 )

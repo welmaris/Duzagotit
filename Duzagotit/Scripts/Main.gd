@@ -9,17 +9,17 @@ export (PackedScene) var House3
 export (PackedScene) var House4
 export (PackedScene) var House5
 
-# var score = 0
-var questionstatus = {}
+
 var current_question_correct_answers = null
 var QuestionScene
+var questionnumber
 var question_is_showing = false
 var minigame_is_showing = false
 var can_still_press_answer = true
 var house
 var housenumber = 0
-var scoring_per_house = [0,0,0,0,0,0]
 var totalscore = 0
+var array_of_questions_not_answered = []
 
 # main
 func new_game():
@@ -64,7 +64,12 @@ func _on_QuestionSpawnTimer_timeout(): # spawns a question bubble for the player
 	var QB = QuestionBubble.instance()
 	QB.connect("_on_Click_Question", self, "_on_Click_Question")
 	add_child(QB)
+	move_child(QB, get_child_count())
 	QB.position = $Path2D/PathFollow2D.position
+	if housenumber == 1:
+		QB.category = "waste"
+	if housenumber == 2:
+		QB.category = "electricity"
 
 # questions mc
 func answer_pressed(buttonint):
@@ -81,6 +86,7 @@ func answer_pressed(buttonint):
 			btn.set('custom_styles/hover', correct_style)
 			btn.set('custom_styles/normal', correct_style)
 			can_still_press_answer = false
+			array_of_questions_not_answered[questionnumber] += 1
 		else:
 	#		print("Not correct")
 			btn.set('custom_styles/pressed', incorrect_style)
@@ -170,15 +176,16 @@ func get_New_Question(category):
 		print("EVERYTHING IS BROKEN!!! (file didnt parse)")
 	var questions = questionparse.result
 	var numberofquestions = len(questions[category])
-	var array_of_questions_not_answered
-	if array_of_questions_not_answered != [0]*numberofquestions:
-		array_of_questions_not_answered = [0]*numberofquestions
+#	if array_of_questions_not_answered.size() == 0:
+	var x = array_of_questions_not_answered.size()
+	while x < numberofquestions:
+		array_of_questions_not_answered.append(0)
+		x+=1
 	print(array_of_questions_not_answered)
-	var questionnumber = randi()% numberofquestions
-	array_of_questions_not_answered[questionnumber] += 1
+	questionnumber = randi()% numberofquestions
+	while array_of_questions_not_answered[questionnumber] > array_of_questions_not_answered.min():
+		questionnumber = randi()% numberofquestions
 	
-	if questionstatus.has(questions[category][questionnumber]) == null:
-		questionstatus[questions[category][questionnumber]] = "shown" #sets the status of the question as shown so it doesnt appear again
 	
 	return questions[category][questionnumber]
 
