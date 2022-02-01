@@ -87,6 +87,7 @@ func answer_pressed(buttonint):
 			btn.set('custom_styles/normal', correct_style)
 			can_still_press_answer = false
 			array_of_questions_not_answered[questionnumber] += 1
+			play_correct()
 		else:
 	#		print("Not correct")
 			btn.set('custom_styles/pressed', incorrect_style)
@@ -96,6 +97,7 @@ func answer_pressed(buttonint):
 			QuestionScene.get_node("B"+str(current_question_correct_answers)).set('custom_styles/hover', correct_style)
 			QuestionScene.get_node("B"+str(current_question_correct_answers)).set('custom_styles/pressed', correct_style)
 			can_still_press_answer = false
+			play_wrong()
 		var timer = Timer.new()
 		timer.connect("timeout",self,"_on_answer_show_timeout") 
 		timer.set_wait_time(2)
@@ -130,7 +132,7 @@ func _on_Click_Question(category):
 		QuestionScene.connect("_button_pressed",self,"answer_pressed")
 		add_child(QuestionScene)
 		
-		var numberofanswers = len(questionarray) - 1
+		var numberofanswers = len(questionarray["answer"]) + 1
 		var correctanswerindex = randi()% numberofanswers
 		current_question_correct_answers = correctanswerindex
 		var simplequestionarray
@@ -140,10 +142,13 @@ func _on_Click_Question(category):
 		QuestionScene.get_node("QuestionTitle").text = questionarray["question"]   #display the question and answers
 		QuestionScene.get_node("B0").text = simplequestionarray[0]
 		QuestionScene.get_node("B1").text = simplequestionarray[1]
-		QuestionScene.get_node("B2").text = simplequestionarray[2]
 		QuestionScene.get_node("B0").show()
 		QuestionScene.get_node("B1").show()
-		QuestionScene.get_node("B2").show()
+		if numberofanswers == 3 or numberofanswers == 4:
+			QuestionScene.get_node("B2").text = simplequestionarray[2]
+			QuestionScene.get_node("B2").show()
+		else:
+			QuestionScene.get_node("B2").hide()
 		if numberofanswers == 4:
 			QuestionScene.get_node("B3").text = simplequestionarray[3]
 			QuestionScene.get_node("B3").show()
@@ -167,7 +172,7 @@ func _player_interract(name):
 # questions mc
 func get_New_Question(category):
 	var questionfile = File.new()
-	if questionfile.open("res://Art/Questions/test.json", File.READ) != OK:  #parse questions.json to a usable object
+	if questionfile.open("res://Art/Questions/questions.json", File.READ) != OK:  #parse questions.json to a usable object
 		print("EVERYTHING IS BROKEN!!! (file didnt open)")
 	var questionfiletext = questionfile.get_as_text()
 	questionfile.close()
@@ -181,13 +186,22 @@ func get_New_Question(category):
 	while x < numberofquestions:
 		array_of_questions_not_answered.append(0)
 		x+=1
-	print(array_of_questions_not_answered)
 	questionnumber = randi()% numberofquestions
 	while array_of_questions_not_answered[questionnumber] > array_of_questions_not_answered.min():
 		questionnumber = randi()% numberofquestions
 	
 	
 	return questions[category][questionnumber]
+
+func play_correct():
+	#yield($AudioStreamPlayer, "finished")
+	$AudioStreamPlayer.stream = load("res://Art/Sound/correct.ogg")
+	$AudioStreamPlayer.play()
+
+func play_wrong():
+	#yield($AudioStreamPlayer, "finished")
+	$AudioStreamPlayer.stream = load("res://Art/Sound/wrong.ogg")
+	$AudioStreamPlayer.play()
 
 func update_score(score: int):
 	totalscore += score

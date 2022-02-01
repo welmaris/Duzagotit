@@ -22,6 +22,8 @@ Minigame = ExtResource( 6 )
 House1 = ExtResource( 7 )
 House2 = ExtResource( 5 )
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
 [node name="HUD" parent="." instance=ExtResource( 9 )]
 layer = 0
 
