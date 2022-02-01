@@ -88,7 +88,7 @@ func mini_do_dishes(furn):
 
 func mini_teddybear(furn):
 #	place and add texture
-	furn.position = Vector2(1335,325)
+	furn.position = Vector2(448, 924)
 	furn.scale = Vector2(.04,.04)
 	furn.get_node("TextureRect").texture = load("res://Art/Images/beer_kapot.png")
 	furn.get_node("TextureRect").get_node("Outline").texture = load("res://Art/Images/beer_kapot.png")
@@ -100,10 +100,14 @@ func mini_teddybear(furn):
 	furn.get_node("Area2D").get_node("InteractionSpace").position = Vector2(250,200)
 	furn.get_node("Area2D").get_node("InteractionSpace").scale = Vector2(10,40)
 
-# methode te vinden in main
-#func minigame_stop():
-#	if is_instance_valid(Minigame):
-#		get_node("Minigame").minigame_not_done()
+func mini_lamp_onoff(furn):
+##	place and add texture
+#	furn.position = Vector2(448, 924)
+#	furn.get_node("TextureRect").texture = load("res://Art/Images/pixel_lamp_on.png")
+#	furn.get_node("TextureRect").get_node("Outline").margin_left = -30
+#	furn.get_node("TextureRect").get_node("Outline").margin_top = -100
+##	add collision
+	pass
 
 func _on_Area2D_body_entered(body):
 	if !player_exists:

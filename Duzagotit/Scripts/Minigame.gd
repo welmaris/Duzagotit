@@ -6,6 +6,9 @@ export (PackedScene) var Faucet
 export (PackedScene) var FaucetKnob
 export (PackedScene) var Dishes
 export (PackedScene) var Teddy
+export (PackedScene) var LampOnOff
+
+signal finished
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -39,7 +42,9 @@ func _ready():
 	if minigame_name == "teddybear":
 		spawn_teddy()
 		$Explanation.text = "Naai de teddybeer weer dicht"
-		
+	if minigame_name == "lamp":
+		spawn_lamp()
+		$Explanation.text = "Zet de lamp uit om stroom te besparen"
 
 func spawn_trash(possible_wastetype): # spawns a trash item
 	$Path2D/PathFollow2D.offset = randi()
@@ -109,7 +114,7 @@ func spawn_trash_cans():
 func check_done():
 	
 #	timeout to give it time to register change in child count
-	yield(get_tree().create_timer(1.0), "timeout")
+	yield(get_tree().create_timer(0.5), "timeout")
 	
 	print(get_child_count())
 	if minigame_name == "collect_dishes" and get_child_count() == 5:
@@ -161,6 +166,10 @@ func spawn_faucet():
 	var faucetknob = FaucetKnob.instance()
 	add_child(faucet)
 	add_child(faucetknob)
+
+func spawn_lamp():
+	var lamp = LampOnOff.instance()
+	add_child(lamp)
 
 func _on_Click_and_Drag_correct_waste_disposal():
 	in_minigame_score += 1
