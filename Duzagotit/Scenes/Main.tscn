@@ -22,6 +22,9 @@ Minigame = ExtResource( 6 )
 House1 = ExtResource( 7 )
 House2 = ExtResource( 5 )
 
+[node name="HUD" parent="." instance=ExtResource( 9 )]
+layer = 0
+
 [node name="QuestionSpawnTimer" type="Timer" parent="."]
 wait_time = 12.5
 
@@ -39,8 +42,5 @@ rotation = 2.80005
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 564.708, 912.791 )
 
-[node name="HUD" parent="." instance=ExtResource( 9 )]
-layer = 0
-
-[connection signal="timeout" from="QuestionSpawnTimer" to="." method="_on_QuestionSpawnTimer_timeout"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
+[connection signal="timeout" from="QuestionSpawnTimer" to="." method="_on_QuestionSpawnTimer_timeout"]

@@ -2,9 +2,15 @@ extends CanvasLayer
 signal start_game
 
 var score = 0
-var goal = 10
+var goal = 5
 var selected = 1
 var house_select_enabled_index = 1 # which house is the last unlocked house
+var sound_player
+
+func _ready():
+	sound_player = AudioStreamPlayer.new()
+	sound_player.stream = load("res://Art/Sound/unlock.wav")
+	add_child(sound_player)
 
 # Reset the score to 0
 func reset_score():
@@ -68,13 +74,26 @@ func goal_reached():
 	if score >= goal:
 		var success
 		#print("succes!!!")
-		house_select_enabled_index += 1
+		sound_player.play()
+		if house_select_enabled_index < 5:
+			house_select_enabled_index += 1
 		$Select.get_node("HouseSelect" + str(house_select_enabled_index)).disabled = false
 		$HouseScore.rect_position.y += 100
+		$Message.text = "Huis "+str(house_select_enabled_index)+" is ontgrendeld."
+		$Message.show()
+		var message_timer = Timer.new()
+		message_timer.connect("timeout",self,"_on_message_show_timeout") 
+		message_timer.set_wait_time(3)
+		message_timer.one_shot = true
+		add_child(message_timer) 
+		message_timer.start() 
 		set_goal(goal + 50)
 		return true
 	return false
 
+func _on_message_show_timeout():
+	$Message.hide()
+		
 func _on_StartGame_pressed():
 	hide_select()
 	hide_instruction()
