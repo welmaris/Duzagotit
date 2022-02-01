@@ -135,7 +135,10 @@ func check_done():
 	if minigame_name == "collect_dishes" and get_child_count() == 5:
 		minigame_done()
 	if minigame_name == "recycling_bins" and get_child_count() == 9:
-		minigame_done()
+		if in_minigame_score < 3:
+			minigame_done(1)
+		else:
+			minigame_done()
 	if minigame_name == "teddybear" and get_child_count() == 6:
 		minigame_done()
 		
@@ -144,15 +147,15 @@ func check_done():
 func minigame_done(_wrong = 0):
 	if $AudioStreamPlayer.playing:
 		yield($AudioStreamPlayer, "finished")
-	if(_wrong == 1):
-		play_wrong()
-	else:
-		play_finished()
-	$AudioStreamPlayer.play()
 	var correct_sprite = Sprite.new()
-	correct_sprite.texture = load("res://Art/Images/correct.png")
 	correct_sprite.position = Vector2(500,500)
 	add_child(correct_sprite)
+	if(_wrong == 1):
+		play_wrong()
+		correct_sprite.texture = load("res://Art/Images/incorrect.png")
+	else:
+		play_finished()
+		correct_sprite.texture = load("res://Art/Images/correct.png")
 	var minigame_show_result_timer = Timer.new()
 	minigame_show_result_timer.set_one_shot(true)
 	minigame_show_result_timer.set_wait_time(2)
@@ -211,6 +214,7 @@ func update_temperature(rotation):
 	if round(50+rotation)/2 == 30:
 		in_minigame_score = 0
 		minigame_done(1)
+
 func spawn_fridge():
 	var fridge = Fridge.instance()
 	fridge.connect("wrong", self, "play_wrong")
@@ -238,6 +242,7 @@ func fridge_correct():
 
 func play_correct():
 	$AudioStreamPlayer.stream = load("res://Art/Sound/ding.ogg")
+	$AudioStreamPlayer.play()
 
 func play_wrong():
 	print("it's wrong")
