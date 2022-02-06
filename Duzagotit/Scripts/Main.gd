@@ -27,6 +27,7 @@ func new_game():
 	$Player.position = (Vector2(600,900))
 	house_select($HUD.selected)
 	$Player.show()
+	print($Player.get_index())
 	$QuestionSpawnTimer.start()
 	#remove_child(house)
 

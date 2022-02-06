@@ -2,10 +2,11 @@ extends CanvasLayer
 signal start_game
 
 var score = 0
-var goal = 40
+var goal = 5
 var selected = 1
 var house_select_enabled_index = 1 # which house is the last unlocked house
 var sound_player
+var last_goal_reached = false
 
 func _ready():
 	sound_player = AudioStreamPlayer.new()
@@ -15,8 +16,8 @@ func _ready():
 # Reset the score to 0
 func reset_score():
 	score = 0
-	$ScoreLabel.text = "Score: " + str(score) + "/" + str(goal)
-	$HouseScore.text = "Score: " + str(score) + "/" + str(goal)
+	$ScoreLabel.text = "Score: " + str(score) if last_goal_reached else "Score: " + str(score) + "/" + str(goal)
+	$HouseScore.text = "Score: " + str(score) if last_goal_reached else "Score: " + str(score) + "/" + str(goal)
 
 # increase score
 func update_score(change: int):
@@ -24,24 +25,24 @@ func update_score(change: int):
 	score += change
 	var new = str(score)
 	goal_reached()
-	$ScoreLabel.text = "Score: " + str(score) + "/" + str(goal)
+	$ScoreLabel.text = "Score: " + str(score) if last_goal_reached else "Score: " + str(score) + "/" + str(goal)
 
 func set_goal(newGoal : int):
+	if newGoal == 0:
+		last_goal_reached = true
 	goal = newGoal
-	$ScoreLabel.text = "Score: " + str(score) + "/" + str(goal)
+	$ScoreLabel.text = "Score: " + str(score) if last_goal_reached else "Score: " + str(score) + "/" + str(goal)
 
 func show_instruction():
 	$RichTextLabel.show()
 
 func update_house_score(score):
-	$HouseScore.text = "Score: " + str(score) + "/" + str(goal)
+	$HouseScore.text = "" if last_goal_reached else "Score: " + str(score) + "/" + str(goal)
 
 func hide_select():
 	$Select/HouseSelect1.hide()
 	$Select/HouseSelect2.hide()
 	$Select/HouseSelect3.hide()
-	$Select/HouseSelect4.hide()
-	$Select/HouseSelect5.hide()
 	$StartButton.hide()
 	$HouseScore.hide()
 
@@ -49,8 +50,6 @@ func show_select():
 	$Select/HouseSelect1.show()
 	$Select/HouseSelect2.show()
 	$Select/HouseSelect3.show()
-	$Select/HouseSelect4.show()
-	$Select/HouseSelect5.show()
 	$StartButton.show()
 	$HouseScore.show()
 
@@ -78,7 +77,7 @@ func goal_reached():
 		var success
 		#print("succes!!!")
 		sound_player.play()
-		if house_select_enabled_index < 5:
+		if house_select_enabled_index < 3:
 			house_select_enabled_index += 1
 		$Select.get_node("HouseSelect" + str(house_select_enabled_index)).disabled = false
 		$HouseScore.rect_position.y += 100
@@ -90,7 +89,9 @@ func goal_reached():
 		message_timer.one_shot = true
 		add_child(message_timer) 
 		message_timer.start() 
-		set_goal(goal + 50)
+		set_goal(goal + 5)
+		if house_select_enabled_index == 3:
+			set_goal(0)
 		return true
 	return false
 

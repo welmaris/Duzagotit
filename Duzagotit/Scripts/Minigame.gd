@@ -114,6 +114,9 @@ func did_a_dish():
 		minigame_done()
 	else:
 		spawn_dish()
+	for x in get_children():
+		if "Click" in x.name:
+			move_child(x,get_child_count())
 
 func spawn_trash_cans():
 	for x in range(5):
@@ -217,7 +220,7 @@ func update_temperature(rotation):
 
 func spawn_fridge():
 	var fridge = Fridge.instance()
-	fridge.connect("wrong", self, "play_wrong")
+	fridge.connect("wrong", self, "fridge_wrong")
 	fridge.connect("correct", self, "fridge_correct")
 	add_child(fridge)
 
@@ -239,6 +242,9 @@ func lamp_off():
 func fridge_correct():
 	in_minigame_score += 2
 	minigame_done()
+	
+func fridge_wrong():
+	minigame_done(1)
 
 func play_correct():
 	$AudioStreamPlayer.stream = load("res://Art/Sound/ding.ogg")

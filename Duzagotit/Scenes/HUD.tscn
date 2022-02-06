@@ -114,6 +114,7 @@ __meta__ = {
 }
 
 [node name="HouseSelect4" type="Button" parent="Select"]
+visible = false
 margin_left = 808.0
 margin_top = 450.0
 margin_right = 1064.0
@@ -127,6 +128,7 @@ __meta__ = {
 }
 
 [node name="HouseSelect5" type="Button" parent="Select"]
+visible = false
 margin_left = 808.0
 margin_top = 550.0
 margin_right = 1064.0
