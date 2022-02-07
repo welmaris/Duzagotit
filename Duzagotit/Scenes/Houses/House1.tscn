@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/Houses/TileMaps/TilemapStairs.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Houses/TileMaps/TilemapFurniture.tres" type="TileSet" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scripts/House1.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/Minigame.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Furniture.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Art/Schilden/Dolfijn.png" type="Texture" id=8]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 64, 32, 0, 32, 0, 0, 64, 0 )
@@ -63,5 +64,10 @@ collision_layer = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 979.205, 690.684 )
 shape = SubResource( 1 )
+
+[node name="Dolfijn" type="Sprite" parent="."]
+position = Vector2( 1751, 200 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 8 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

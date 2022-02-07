@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/QuestionBubble.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scenes/Houses/House2.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Minigame.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Houses/House1.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Houses/House3.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Curve2D" id=1]
@@ -21,6 +22,7 @@ Question = ExtResource( 4 )
 Minigame = ExtResource( 6 )
 House1 = ExtResource( 7 )
 House2 = ExtResource( 5 )
+House3 = ExtResource( 8 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
