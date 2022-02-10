@@ -32,7 +32,7 @@ func _ready():
 		$Sprite2.texture = load("res://Art/Images/plate.png")
 	if wastetype == "bowl":
 		$Sprite2.texture = load("res://Art/Images/plate.png")
-	if wastetype == "sponge":
+	if wastetype == "sponge" or wastetype == "aquasponge" :
 		$Sprite2.texture = load("res://Art/Images/sponge.png")
 	if wastetype == "needle":
 		$Sprite2.texture = load("res://Art/Images/naald.png")
@@ -66,6 +66,11 @@ func _on_Click_and_Drag_area_entered(area):
 		if wastetype == "needle":
 			area.scale -= Vector2(0.02,0.02) 
 			if area.scale.x <= 0.8:
+				area.queue_free()
+				emit_signal("correct_waste_disposal")
+		if wastetype == "aquasponge":
+			area.modulate.a -= 0.1 
+			if area.modulate.a <= 0.5:
 				area.queue_free()
 				emit_signal("correct_waste_disposal")
 		elif wastetype == "solar":

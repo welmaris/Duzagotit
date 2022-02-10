@@ -67,6 +67,9 @@ func _ready():
 	if minigame_name == "shower":
 		spawn_shower()
 		$Explanation.text = "Zet de douche uit om water te besparen"
+	if minigame_name == "aquarium":
+		spawn_aquarium()
+		$Explanation.text = "Maak het aquarium schoon"
 
 # Minigame finished succesfully
 func minigame_done(_wrong = 0):
@@ -143,7 +146,7 @@ func spawn_trash(possible_wastetype): # spawns a trash item
 	trash.wastetype = possible_wastetype[randi()%len(possible_wastetype)]
 	add_child(trash)
 	trash.position = $Path2D/PathFollow2D.position
-	if possible_wastetype[0] == "plate":
+	if possible_wastetype[0] == "plate" or possible_wastetype[0] == "sponge":
 		trash.position.x = trash.position.x / 2
 	if possible_wastetype[0] == "solar":
 		trash.position = Vector2(1700,400)
@@ -177,6 +180,27 @@ func spawn_teddy():
 			fluff.position = Vector2(1200,675)
 		add_child(fluff)
 	spawn_trash(["needle"])
+	get_child(get_child_count()-1).position = Vector2(800,400)
+
+func spawn_aquarium():
+	var aqua = Teddy.instance()
+	aqua.get_node("Wool").hide()
+	aqua.get_node("Bear").texture = load("res://Art/Images/aquarium.png")
+	aqua.get_node("Bear").scale = Vector2(0.6,0.6)
+	aqua.get_node("Bear").position = Vector2(1263,429)
+	aqua.get_node("Temperature").hide()
+	aqua.get_node("Ladder").hide()
+	add_child(aqua)
+	move_child(aqua,aqua.get_index() - 1)
+	for x in range(3):
+		var stain = Trashcan.instance()
+		stain.get_node("Sprite").texture = load("res://Art/Images/stain.png")
+		stain.get_node("Sprite").scale = Vector2(0.2,0.2)
+		stain.position = Vector2(1100+200*x,400)
+		if x == 2:
+			stain.position = Vector2(1200,675)
+		add_child(stain)
+	spawn_trash(["aquasponge"])
 	get_child(get_child_count()-1).position = Vector2(800,400)
 
 func spawn_dish():
