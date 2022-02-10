@@ -9,7 +9,8 @@ func _ready():
 #	Call method to place minigames
 
 #	var minigame_names = ["recycling_bins","collect_dishes","cd2","do_dishes","teddybear", "lamp", "lamp2", "fridge"]
-	var minigame_names = ["lamp", "lamp2", "fridge","thermostat","solar"]
+#	Bij naamwijziging ook in Minigame.gd wijzigen
+	var minigame_names = ["lamp_woonkamer", "lamp_slaapkamer", "fridge","thermostat","solar"]
 	spawn_minigames(minigame_names)
 #	print(get_tree())
 
@@ -29,11 +30,11 @@ func spawn_minigames(minigame_names: Array):
 			furn.minigame_name = "collect_dishes"
 		
 #		loop through games 
-		if name == "lamp":
+		if name == "lamp_woonkamer":
 			furn.position = Vector2(390, 750)
 			mini_lamp(furn)
-		elif name == "lamp2":
-			furn.position = Vector2(1000, 250)
+		elif name == "lamp_slaapkamer":
+			furn.position = Vector2(1375, 150)
 			mini_lamp(furn)
 		elif name == "fridge":
 			mini_fridge(furn)
@@ -56,7 +57,7 @@ func mini_lamp(furn):
 #	add collision
 	furn.get_node("CollisionShape2D").position = Vector2(12,22)
 	furn.get_node("CollisionShape2D").scale = Vector2(0.2,1)
-	furn.get_node("Area2D").get_node("InteractionSpace").position = Vector2(30,30)
+	furn.get_node("Area2D").get_node("InteractionSpace").position = Vector2(30, 30)
 	furn.get_node("Area2D").get_node("InteractionSpace").scale = Vector2(1,1)
 	print("is pickable: " , furn.is_pickable())
 

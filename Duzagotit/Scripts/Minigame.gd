@@ -49,7 +49,7 @@ func _ready():
 	if minigame_name == "teddybear":
 		spawn_teddy()
 		$Explanation.text = "Gebruik de naald en draad om de teddybeer weer heel te maken"
-	if minigame_name == "lamp" or minigame_name == "lamp2":
+	if minigame_name == "lamp_woonkamer" or minigame_name == "lamp_slaapkamer":
 		spawn_lamp()
 		$Explanation.text = "Zet de lamp uit om stroom te besparen"
 	if minigame_name == "thermostat":
