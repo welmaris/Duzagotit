@@ -68,7 +68,7 @@ func _on_Click_and_Drag_area_entered(area):
 			if area.scale.x <= 0.8:
 				area.queue_free()
 				emit_signal("correct_waste_disposal")
-		if wastetype == "solar":
+		elif wastetype == "solar":
 			position = area.position
 			area.queue_free()
 			can_drag = false

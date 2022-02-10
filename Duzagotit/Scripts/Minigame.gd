@@ -21,6 +21,8 @@ var in_minigame_score = 0
 var in_minigame_max_score = 0
 
 var thermostat
+var shower
+var can_turn = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -46,7 +48,7 @@ func _ready():
 		$Explanation.text = "Poets de borden schoon met de spons"
 	if minigame_name == "teddybear":
 		spawn_teddy()
-		$Explanation.text = "Naai de teddybeer weer dicht"
+		$Explanation.text = "Gebruik de naald en draad om de teddybeer weer heel te maken"
 	if minigame_name == "lamp" or minigame_name == "lamp2":
 		spawn_lamp()
 		$Explanation.text = "Zet de lamp uit om stroom te besparen"
@@ -218,10 +220,20 @@ func spawn_lamp():
 	add_child(lamp)
 
 func spawn_shower():
+	can_turn = true
 	var knob = Turning.instance()
-	knob.get_node("Sprite").texture = load("")
+	knob.get_node("Sprite").texture = load("res://Art/Images/knob.png")
+	knob.get_node("Sprite").scale = Vector2(0.5,0.5)
+	shower = Trashcan.instance()
+	shower.get_node("Sprite").texture = load("res://Art/Images/douche2.png")
+	shower.get_node("Sprite").scale = Vector2(0.5,0.5)
+	shower.position = Vector2(1070,600)
+	shower.get_node("Sprite").flip_h = true
+	add_child(shower)
+	add_child(knob)
 
 func spawn_thermostat():
+	can_turn = true
 	thermostat = Teddy.instance()
 	thermostat.get_node("Bear").texture = load("res://Art/Images/thermostat.png")
 	thermostat.get_node("Bear").scale = Vector2(2.2,2.2)
@@ -230,17 +242,39 @@ func spawn_thermostat():
 	thermostat.get_node("Temperature").show()
 	thermostat.get_node("Ladder").hide()
 	var thermostatknob = Turning.instance()
+	thermostatknob.get_node("Sprite").texture = load("res://Art/Images/thermostatknob.png")
 	add_child(thermostat)
 	add_child(thermostatknob)
 
 func update_temperature(rotation):
-	thermostat.get_node("Temperature").text = str(round(50+rotation)/2)
-	if round(50+rotation)/2 == 19:
-		in_minigame_score = 5
-		minigame_done()
-	if round(50+rotation)/2 == 30:
-		in_minigame_score = 0
-		minigame_done(1)
+	if minigame_name == "thermostat":
+		thermostat.get_node("Temperature").text = str(round(50+rotation)/2)
+		if round(50+rotation)/2 == 19:
+			in_minigame_score = 5
+			minigame_done()
+		if round(50+rotation)/2 == 30:
+			in_minigame_score = 0
+			minigame_done(1)
+	elif minigame_name == "shower" and can_turn:
+		var ammount_turned = round(rotation)/3
+		if ammount_turned > 2 and ammount_turned <= 4:
+			shower.get_node("Sprite").texture = load("res://Art/Images/douche3.png")
+		if ammount_turned > 4:
+			shower.get_node("Sprite").texture = load("res://Art/Images/douche4.png")
+			in_minigame_score = 0
+			minigame_done(1)
+			can_turn = false
+		if ammount_turned <= 2 and ammount_turned > -1:
+			shower.get_node("Sprite").texture = load("res://Art/Images/douche2.png")
+		if ammount_turned <= -1 and ammount_turned > -3:
+			shower.get_node("Sprite").texture = load("res://Art/Images/douche1.png")
+		if ammount_turned < -3:
+			shower.get_node("Sprite").texture = load("res://Art/Images/douche0.png")
+			in_minigame_score = 5
+			minigame_done()
+			can_turn = false
+
+			
 
 func spawn_fridge():
 	var fridge = Fridge.instance()
@@ -310,7 +344,7 @@ func play_correct():
 	$AudioStreamPlayer.play()
 
 func play_wrong():
-	print("it's wrong")
+	#print("it's wrong")
 	$AudioStreamPlayer.stream = load("res://Art/Sound/wrong.ogg")
 	$AudioStreamPlayer.play()
 
