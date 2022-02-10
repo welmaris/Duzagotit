@@ -56,95 +56,9 @@ func _ready():
 	if minigame_name == "fridge":
 		spawn_fridge()
 		$Explanation.text = "Welke Koelkast kunnen je ouders het beste kopen?"
-
-func spawn_trash(possible_wastetype): # spawns a trash item
-	$Path2D/PathFollow2D.offset = randi()
-	var trash = TrashItem.instance()
-	trash.connect("input_event", trash, "_on_Click_input_event")
-	trash.connect("correct_waste_disposal", self, "_on_Click_and_Drag_correct_waste_disposal")
-	trash.connect("incorrect_waste_disposal", self, "_on_Click_and_Drag_incorrect_waste_disposal")
-	
-	trash.wastetype = possible_wastetype[randi()%len(possible_wastetype)]
-	add_child(trash)
-	trash.position = $Path2D/PathFollow2D.position
-	if possible_wastetype[0] == "plate":
-		trash.position.x = trash.position.x / 2
-
-func spawn_dish_bowl():
-	var dishbowl = Trashcan.instance()
-	dishbowl.get_node("Sprite").texture = load("res://Art/Images/wasbak.png")
-	dishbowl.get_node("Sprite").scale = Vector2(1,1)
-	dishbowl.get_node("CollisionShape2D").scale = Vector2(2.5,2.5)
-	dishbowl.get_node("CollisionShape2D").position = Vector2(0,150)
-	
-	add_child(dishbowl)
-	dishbowl.position = Vector2(1300,500)
-
-func spawn_teddy():
-	var bear = Teddy.instance()
-	bear.get_node("Wool").show()
-	bear.get_node("Bear").texture = load("res://Art/Images/beer_heel.png")
-	bear.get_node("Bear").scale = Vector2(0.6,0.6)
-	bear.get_node("Bear").position = Vector2(1263,429)
-	bear.get_node("Temperature").hide()
-	add_child(bear)
-	move_child(bear,bear.get_index() - 1)
-	for x in range(3):
-		var fluff = Trashcan.instance()
-		fluff.get_node("Sprite").texture = load("res://Art/Images/beer_pluis.png")
-		fluff.get_node("Sprite").scale = Vector2(0.2,0.2)
-		fluff.position = Vector2(1100+200*x,400)
-		if x == 2:
-			fluff.position = Vector2(1200,675)
-		add_child(fluff)
-	spawn_trash(["needle"])
-	get_child(get_child_count()-1).position = Vector2(800,400)
-
-func spawn_dish():
-	var dish = Dishes.instance()
-	dish.get_node("Sprite").texture = load("res://Art/Images/plate.png")
-	dish.position = Vector2(400,400)
-	add_child(dish)
-	#move_child(dish,dish.get_index() - 1)
-
-func did_a_dish():
-	play_correct()
-	in_minigame_score += 1
-	if in_minigame_score == 5:
-		minigame_done()
-	else:
-		spawn_dish()
-	for x in get_children():
-		if "Click" in x.name:
-			move_child(x,get_child_count())
-
-func spawn_trash_cans():
-	for x in range(5):
-		var trashcan = Trashcan.instance()
-		trashcan.get_node("Sprite").scale = Vector2(0.2,0.2)
-		trashcan.get_node("CollisionShape2D").scale = Vector2(1,1)
-		#trashcan.connect("input_event", trashcan, "_on_Click_input_event")
-		trashcan.get_node("Sprite").texture = load("res://Art/Images/prullebak/"+str(x+1)+".png")
-		add_child(trashcan)
-		trashcan.position = Vector2(300+300*x,800)
-
-# check if minigame has finished
-func check_done():
-	
-#	timeout to give it time to register change in child count
-	yield(get_tree().create_timer(0.5), "timeout")
-	
-	print(get_child_count())
-	if minigame_name == "collect_dishes" and get_child_count() == 5:
-		minigame_done()
-	if minigame_name == "recycling_bins" and get_child_count() == 9:
-		if in_minigame_score < 3:
-			minigame_done(1)
-		else:
-			minigame_done()
-	if minigame_name == "teddybear" and get_child_count() == 6:
-		minigame_done()
-		
+	if minigame_name == "solar":
+		spawn_solar()
+		$Explanation.text = "Plaats de zonnepanelen op het dak"
 
 # Minigame finished succesfully
 func minigame_done(_wrong = 0):
@@ -187,6 +101,105 @@ func minigame_not_done():
 	get_parent().minigame_is_showing = false
 	queue_free()
 
+
+
+# check if minigame has finished
+func check_done():
+	
+#	timeout to give it time to register change in child count
+	yield(get_tree().create_timer(0.5), "timeout")
+	
+	
+	if minigame_name == "collect_dishes" and get_child_count() == 5:
+		minigame_done()
+	if minigame_name == "recycling_bins" and get_child_count() == 9:
+		if in_minigame_score < 3:
+			minigame_done(1)
+		else:
+			minigame_done()
+	if minigame_name == "teddybear" and get_child_count() == 6:
+		minigame_done()
+	if minigame_name == "solar" and in_minigame_score == 6:
+		minigame_done()
+
+
+
+
+func spawn_trash(possible_wastetype): # spawns a trash item
+	$Path2D/PathFollow2D.offset = randi()
+	var trash = TrashItem.instance()
+	trash.connect("input_event", trash, "_on_Click_input_event")
+	trash.connect("correct_waste_disposal", self, "_on_Click_and_Drag_correct_waste_disposal")
+	trash.connect("incorrect_waste_disposal", self, "_on_Click_and_Drag_incorrect_waste_disposal")
+	
+	trash.wastetype = possible_wastetype[randi()%len(possible_wastetype)]
+	add_child(trash)
+	trash.position = $Path2D/PathFollow2D.position
+	if possible_wastetype[0] == "plate":
+		trash.position.x = trash.position.x / 2
+	if possible_wastetype[0] == "solar":
+		trash.position = Vector2(1700,400)
+
+func spawn_dish_bowl():
+	var dishbowl = Trashcan.instance()
+	dishbowl.get_node("Sprite").texture = load("res://Art/Images/wasbak.png")
+	dishbowl.get_node("Sprite").scale = Vector2(1,1)
+	dishbowl.get_node("CollisionShape2D").scale = Vector2(2.5,2.5)
+	dishbowl.get_node("CollisionShape2D").position = Vector2(0,150)
+	
+	add_child(dishbowl)
+	dishbowl.position = Vector2(1300,500)
+
+func spawn_teddy():
+	var bear = Teddy.instance()
+	bear.get_node("Wool").show()
+	bear.get_node("Bear").texture = load("res://Art/Images/beer_heel.png")
+	bear.get_node("Bear").scale = Vector2(0.6,0.6)
+	bear.get_node("Bear").position = Vector2(1263,429)
+	bear.get_node("Temperature").hide()
+	bear.get_node("Ladder").hide()
+	add_child(bear)
+	move_child(bear,bear.get_index() - 1)
+	for x in range(3):
+		var fluff = Trashcan.instance()
+		fluff.get_node("Sprite").texture = load("res://Art/Images/beer_pluis.png")
+		fluff.get_node("Sprite").scale = Vector2(0.2,0.2)
+		fluff.position = Vector2(1100+200*x,400)
+		if x == 2:
+			fluff.position = Vector2(1200,675)
+		add_child(fluff)
+	spawn_trash(["needle"])
+	get_child(get_child_count()-1).position = Vector2(800,400)
+
+func spawn_dish():
+	var dish = Dishes.instance()
+	dish.get_node("Sprite").texture = load("res://Art/Images/plate.png")
+	dish.position = Vector2(400,400)
+	add_child(dish)
+	#move_child(dish,dish.get_index() - 1)
+
+func did_a_dish():
+	play_correct()
+	in_minigame_score += 1
+	if in_minigame_score == 5:
+		minigame_done()
+	else:
+		spawn_dish()
+	for x in get_children():
+		if "Click" in x.name:
+			move_child(x,get_child_count())
+
+func spawn_trash_cans():
+	for x in range(5):
+		var trashcan = Trashcan.instance()
+		trashcan.get_node("Sprite").scale = Vector2(0.2,0.2)
+		trashcan.get_node("CollisionShape2D").scale = Vector2(1,1)
+		#trashcan.connect("input_event", trashcan, "_on_Click_input_event")
+		trashcan.get_node("Sprite").texture = load("res://Art/Images/prullebak/"+str(x+1)+".png")
+		add_child(trashcan)
+		trashcan.position = Vector2(300+300*x,800)
+
+
 func spawn_faucet():
 	var faucet = Faucet.instance()
 	var faucetknob = FaucetKnob.instance()
@@ -205,6 +218,7 @@ func spawn_thermostat():
 	thermostat.get_node("Bear").position = Vector2(950,600)
 	thermostat.get_node("Wool").hide()
 	thermostat.get_node("Temperature").show()
+	thermostat.get_node("Ladder").hide()
 	var thermostatknob = Turning.instance()
 	add_child(thermostat)
 	add_child(thermostatknob)
@@ -223,8 +237,30 @@ func spawn_fridge():
 	fridge.connect("wrong", self, "fridge_wrong")
 	fridge.connect("correct", self, "fridge_correct")
 	add_child(fridge)
+	
+func spawn_solar():
+	var roof = Teddy.instance()
+	roof.get_node("Bear").texture = load("res://Art/Images/dak.png")
+	roof.get_node("Bear").scale = Vector2(0.75,0.75)
+	roof.get_node("Bear").position = Vector2(1000,550)
+	roof.get_node("Wool").hide()
+	roof.get_node("Temperature").hide()
+	roof.get_node("Ladder").show()
+	
+	for x in range(6):
+		var solar_holder = Trashcan.instance()
+		solar_holder.get_node("Sprite").texture = load("res://Art/Images/solar.png")
+		solar_holder.get_node("Sprite").scale = Vector2(0.2,0.2)
+		solar_holder.position = Vector2(500+300*x,375)
+		if x > 2:
+			solar_holder.position = Vector2(501+300*(x-3),725)
+		add_child(solar_holder)
+	add_child(roof)
+	spawn_trash(["solar"])
 
 func _on_Click_and_Drag_correct_waste_disposal():
+	if minigame_name == "solar" and in_minigame_score < 5:
+		spawn_trash(["solar"])
 	in_minigame_score += 1
 	play_correct()
 	check_done()

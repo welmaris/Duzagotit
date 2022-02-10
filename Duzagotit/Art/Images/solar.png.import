@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Zeepaard.png-379c244947135a5c584c1d3b8487fe9d.stex"
+path="res://.import/solar.png-a95fa47f933743237ffb4749e37f3f51.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Schilden/Zeepaard.png"
-dest_files=[ "res://.import/Zeepaard.png-379c244947135a5c584c1d3b8487fe9d.stex" ]
+source_file="res://Art/Images/solar.png"
+dest_files=[ "res://.import/solar.png-a95fa47f933743237ffb4749e37f3f51.stex" ]
 
 [params]
 

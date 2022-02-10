@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Zeepaard.png-379c244947135a5c584c1d3b8487fe9d.stex"
+path="res://.import/ladder.png-0845a9fb242a768b5c154f0c315689d4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Schilden/Zeepaard.png"
-dest_files=[ "res://.import/Zeepaard.png-379c244947135a5c584c1d3b8487fe9d.stex" ]
+source_file="res://Art/Images/ladder.png"
+dest_files=[ "res://.import/ladder.png-0845a9fb242a768b5c154f0c315689d4.stex" ]
 
 [params]
 

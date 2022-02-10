@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Art/Images/beer_heel.png" type="Texture" id=1]
 [ext_resource path="res://Art/Images/wol.png" type="Texture" id=2]
 [ext_resource path="res://Art/Calibri Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Art/Images/ladder.png" type="Texture" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 128
@@ -36,3 +37,8 @@ autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Ladder" type="Sprite" parent="."]
+position = Vector2( 1380.98, 1038.6 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 4 )

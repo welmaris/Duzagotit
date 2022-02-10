@@ -6,6 +6,7 @@ signal incorrect_waste_disposal
 var dragging = false
 var mouse_offset = Vector2()
 var wastetype = ""
+var can_drag = true
 
 
 # Called when the node enters the scene tree for the first time.
@@ -36,6 +37,11 @@ func _ready():
 	if wastetype == "needle":
 		$Sprite2.texture = load("res://Art/Images/naald.png")
 		$Line2D.show()
+	if wastetype == "solar":
+		$Sprite2.texture = load("res://Art/Images/solar.png")
+		$Sprite2.scale = Vector2(0.9,0.9)
+		$CollisionShape2D.shape = RectangleShape2D.new()
+		$CollisionShape2D.shape.set_extents(Vector2(80,100))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -47,11 +53,13 @@ func _process(delta):
 
 
 func _on_Click_input_event(viewport, event, shape_idx):
+	print("something")
 	if(event is InputEventMouseButton):
-		dragging = true
-		if !event.is_pressed():
-			dragging = false
-		mouse_offset = position - event.position
+		if can_drag:
+			dragging = true
+			if !event.is_pressed():
+				dragging = false
+			mouse_offset = position - event.position
 
 func _on_Click_and_Drag_area_entered(area):
 	if("MinigameInterractObject" in area.name):
@@ -60,6 +68,12 @@ func _on_Click_and_Drag_area_entered(area):
 			if area.scale.x <= 0.8:
 				area.queue_free()
 				emit_signal("correct_waste_disposal")
+		if wastetype == "solar":
+			position = area.position
+			area.queue_free()
+			can_drag = false
+			dragging = false
+			emit_signal("correct_waste_disposal")
 		else:
 			var bintype = "dishes"
 			if "1.png" in  area.get_node("Sprite").texture.get_path():
