@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/Houses/TileMaps/TilemapStairs.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Houses/TileMaps/TilemapFloor.tres" type="TileSet" id=2]
@@ -7,11 +7,12 @@
 [ext_resource path="res://Scripts/House2.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/Furniture.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Minigame.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Art/Schilden/Ijsbeer.png" type="Texture" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 41.5, 10.5 )
 
-[node name="House" type="Node2D"]
+[node name="House2" type="Node2D"]
 position = Vector2( 53, 158 )
 script = ExtResource( 5 )
 Minigame = ExtResource( 7 )
@@ -58,5 +59,7 @@ position = Vector2( 958, 554 )
 shape = SubResource( 1 )
 
 [node name="Ijsbeer" type="Sprite" parent="."]
+position = Vector2( 1654.51, 184.084 )
+texture = ExtResource( 8 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
