@@ -73,17 +73,17 @@ func mini_do_dishes(furn):
 	furn.get_node("Area2D").get_node("InteractionSpace").scale = Vector2(2,6)
 
 func mini_aquarium(furn):
-	furn.position = Vector2(1275,670)
-	furn.scale = Vector2(.13,.13)
-	furn.get_node("TextureRect").texture = load("res://Art/Images/sponge.png")
-	furn.get_node("TextureRect").get_node("Outline").texture = load("res://Art/Images/sponge.png")
-	furn.get_node("TextureRect").get_node("Outline").margin_left = -10
-	furn.get_node("TextureRect").get_node("Outline").margin_top = -10
-#	add collision
-	furn.get_node("CollisionShape2D").position = Vector2(200,38)
-	furn.get_node("CollisionShape2D").scale = Vector2(2,1)
-	furn.get_node("Area2D").get_node("InteractionSpace").position = Vector2(120,200)
-	furn.get_node("Area2D").get_node("InteractionSpace").scale = Vector2(2,6)
+	furn.position = Vector2(625, 660)
+	
+	furn.get_node("TextureRect").texture = load("res://Art/Images/vissenkom_rpg.png")
+	furn.get_node("TextureRect").get_node("Outline").texture = load("res://Art/Images/vissenkom_rpg.png")
+	furn.get_node("TextureRect").get_node("Outline").margin_left = 0
+	furn.get_node("TextureRect").get_node("Outline").margin_top = 0
+	#	add collision
+	furn.get_node("CollisionShape2D").position = Vector2(15,15)
+	furn.get_node("CollisionShape2D").scale = Vector2(.5,.5)
+	furn.get_node("Area2D").get_node("InteractionSpace").position = Vector2(15,30)
+	furn.get_node("Area2D").get_node("InteractionSpace").scale = Vector2(.8,1)
 
 func _on_Area2D_body_entered(body):
 	if !player_exists:
