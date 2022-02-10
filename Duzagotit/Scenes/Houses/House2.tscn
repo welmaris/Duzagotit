@@ -12,7 +12,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 41.5, 10.5 )
 
-[node name="House2" type="Node2D"]
+[node name="House" type="Node2D"]
 position = Vector2( 53, 158 )
 script = ExtResource( 5 )
 Minigame = ExtResource( 7 )
@@ -58,8 +58,15 @@ collision_layer = 4
 position = Vector2( 958, 554 )
 shape = SubResource( 1 )
 
-[node name="Ijsbeer" type="Sprite" parent="."]
-position = Vector2( 1654.51, 184.084 )
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 1523.44
+margin_top = 57.0175
+margin_right = 1787.44
+margin_bottom = 318.018
+mouse_filter = 2
 texture = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

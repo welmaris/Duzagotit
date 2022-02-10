@@ -65,9 +65,16 @@ collision_layer = 4
 position = Vector2( 979.205, 690.684 )
 shape = SubResource( 1 )
 
-[node name="Dolfijn" type="Sprite" parent="."]
-position = Vector2( 1751, 200 )
-scale = Vector2( 0.25, 0.25 )
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 1614.59
+margin_top = -74.3218
+margin_right = 2694.59
+margin_bottom = 2145.68
+rect_scale = Vector2( 0.25, 0.25 )
+mouse_filter = 2
 texture = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

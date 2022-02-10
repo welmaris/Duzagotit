@@ -10,7 +10,7 @@ func _ready():
 
 #	var minigame_names = ["recycling_bins","collect_dishes","cd2","do_dishes","teddybear", "lamp", "lamp2", "fridge"]
 #	Bij naamwijziging ook in Minigame.gd wijzigen
-	var minigame_names = ["lamp_woonkamer", "lamp_slaapkamer", "fridge","thermostat","solar"]
+	var minigame_names = ["lamp_woonkamer", "fridge","thermostat","solar","lamp_slaapkamer"]
 	spawn_minigames(minigame_names)
 #	print(get_tree())
 
@@ -34,7 +34,7 @@ func spawn_minigames(minigame_names: Array):
 			furn.position = Vector2(390, 750)
 			mini_lamp(furn)
 		elif name == "lamp_slaapkamer":
-			furn.position = Vector2(1375, 150)
+			furn.position = Vector2(1375, 750)
 			mini_lamp(furn)
 		elif name == "fridge":
 			mini_fridge(furn)

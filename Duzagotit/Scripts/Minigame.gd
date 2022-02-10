@@ -132,6 +132,8 @@ func check_done():
 		minigame_done()
 	if minigame_name == "solar" and in_minigame_score == 6:
 		minigame_done()
+	if minigame_name == "aquarium" and in_minigame_score == 10:
+		minigame_done()
 
 
 
@@ -186,23 +188,21 @@ func spawn_aquarium():
 	var aqua = Teddy.instance()
 	aqua.get_node("Wool").hide()
 	aqua.get_node("Bear").texture = load("res://Art/Images/aquarium.png")
-	aqua.get_node("Bear").scale = Vector2(0.6,0.6)
-	aqua.get_node("Bear").position = Vector2(1263,429)
+	aqua.get_node("Bear").scale = Vector2(4.4,4.4)
+	aqua.get_node("Bear").position = Vector2(963,629)
 	aqua.get_node("Temperature").hide()
 	aqua.get_node("Ladder").hide()
 	add_child(aqua)
 	move_child(aqua,aqua.get_index() - 1)
-	for x in range(3):
+	for x in range(10):
 		var stain = Trashcan.instance()
 		stain.get_node("Sprite").texture = load("res://Art/Images/stain.png")
-		stain.get_node("Sprite").scale = Vector2(0.2,0.2)
-		stain.position = Vector2(1100+200*x,400)
-		if x == 2:
-			stain.position = Vector2(1200,675)
+		stain.get_node("Sprite").scale = Vector2(0.3,0.3)
+		stain.position = Vector2(500+randi()%1000,400+randi()%550)
 		add_child(stain)
 	spawn_trash(["aquasponge"])
 	get_child(get_child_count()-1).position = Vector2(800,400)
-
+																			# 300-1000 500-1500
 func spawn_dish():
 	var dish = Dishes.instance()
 	dish.get_node("Sprite").texture = load("res://Art/Images/plate.png")

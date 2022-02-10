@@ -2,7 +2,7 @@ extends CanvasLayer
 signal start_game
 
 var score = 0
-var goal = 5
+var goal = 40
 var selected = 1
 var house_select_enabled_index = 1 # which house is the last unlocked house
 var sound_player
@@ -73,7 +73,7 @@ func hide_instruction():
 #	$RichTextLabel.hide()	
 
 func goal_reached():
-	if score >= goal:
+	if score >= goal and goal != 0:
 		var success
 		#print("succes!!!")
 		sound_player.play()
@@ -89,7 +89,7 @@ func goal_reached():
 		message_timer.one_shot = true
 		add_child(message_timer) 
 		message_timer.start() 
-		set_goal(goal + 5)
+		set_goal(goal + 40)
 		if house_select_enabled_index == 3:
 			set_goal(0)
 		return true
