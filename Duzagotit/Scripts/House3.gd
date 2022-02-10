@@ -39,3 +39,9 @@ func mini_washing(furn):
 	furn.get_node("Area2D").get_node("InteractionSpace").position = Vector2(20,10)
 	furn.get_node("Area2D").get_node("InteractionSpace").scale = Vector2(0.5,1)
 	
+func _on_Area2D_body_entered(body):
+	if !player_exists:
+		player_exists = true
+	else:
+		#print("testing")
+		get_parent().goto_house_select()
