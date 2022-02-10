@@ -33,7 +33,7 @@ func spawn_minigames(minigame_names: Array):
 			furn.position = Vector2(390, 750)
 			mini_lamp(furn)
 		elif name == "lamp2":
-			furn.position = Vector2(1350, 750)
+			furn.position = Vector2(1000, 250)
 			mini_lamp(furn)
 		elif name == "fridge":
 			mini_fridge(furn)
@@ -56,7 +56,7 @@ func mini_lamp(furn):
 #	add collision
 	furn.get_node("CollisionShape2D").position = Vector2(12,22)
 	furn.get_node("CollisionShape2D").scale = Vector2(0.2,1)
-	furn.get_node("Area2D").get_node("InteractionSpace").position = Vector2(10,10)
+	furn.get_node("Area2D").get_node("InteractionSpace").position = Vector2(30,30)
 	furn.get_node("Area2D").get_node("InteractionSpace").scale = Vector2(1,1)
 	print("is pickable: " , furn.is_pickable())
 
