@@ -68,7 +68,7 @@ func _on_Click_and_Drag_area_entered(area):
 			if area.scale.x <= 0.8:
 				area.queue_free()
 				emit_signal("correct_waste_disposal")
-		if wastetype == "aquasponge":
+		elif wastetype == "aquasponge":
 			area.modulate.a -= 0.1 
 			if area.modulate.a <= 0.5:
 				area.queue_free()
