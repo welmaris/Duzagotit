@@ -48,6 +48,8 @@ func _ready():
 func _process(delta):
 	if (dragging):
 		position = get_viewport().get_mouse_position() + mouse_offset
+	elif (wastetype == "aquasponge" or wastetype == "sponge"):
+		position = Vector2(600,300)
 	if wastetype == "needle":
 		$Line2D.set_points([-position+Vector2(478,900),Vector2(105,85)])
 
