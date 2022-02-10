@@ -311,8 +311,10 @@ func spawn_fridge():
 
 func spawn_washing():
 	var washingmachine = Fridge.instance()
-	washingmachine.get_node("TB0").set_normal_texture(load("res://Art/Images/FridgeAAA.png"))
-	washingmachine.get_node("TB1").set_normal_texture(load("res://Art/Images/FridgeD.png"))
+	washingmachine.get_node("TB0").set_normal_texture(load("res://Art/Images/wasmachine.png"))
+	washingmachine.get_node("TB0").rect_scale = Vector2(1.7,1.7)
+	washingmachine.get_node("TB1").set_normal_texture(load("res://Art/Images/washing_machine2.png"))
+	washingmachine.get_node("TB1").rect_scale = Vector2(1,1)
 	washingmachine.connect("wrong", self, "fridge_wrong")
 	washingmachine.connect("correct", self, "fridge_correct")
 	add_child(washingmachine)
