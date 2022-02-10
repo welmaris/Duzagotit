@@ -192,8 +192,73 @@
          ], 
          "answercorrect": "Ja." 
  }
- ]
- }
+ ],
+"water":[
+{ 
+
+"question": "Hoeveel procent van het water op aarde is drinkbaar?", 
+         "answer": [ 
+            "30%.", 
+            "5%." 
+         ], 
+         "answercorrect": "1%." 
+}, 
+{ 
+"question": "Is het zuiveren van water uit rivieren een lastigere klus dan het zuiveren van water uit de grond en de duinen?", 
+         "answer": [ 
+            "Nee." 
+         ], 
+         "answercorrect": "Ja." 
+}, 
+{ 
+"question": "Hoeveel liter water gebruikt een persoon gemiddeld in Nederland per dag?", 
+         "answer": [ 
+            "230L.", 
+            "50L" 
+         ], 
+         "answercorrect": "120L." 
+}, 
+{ 
+"question": "Voor hoeveel procent bestaat het menselijk lichaam uit water?", 
+         "answer": [ 
+            "10%.",
+            "50%" 
+         ], 
+         "answercorrect": "70%." 
+}, 
+{ 
+"question": "In de scheikunde wordt water met welke formule aangeduid?", 
+         "answer": [ 
+            "O2.", 
+            "H2" 
+         ], 
+         "answercorrect": "H2O." 
+}, 
+{ 
+"question": "Hoeveel procent van de wereldbevolking heeft geen schoon drinkwater?", 
+         "answer": [ 
+            "2,9%.", 
+            "40,2%" 
+         ], 
+         "answercorrect": "8,4%." 
+},
+{ 
+"question": "Om water goed te kunne zuiveren worden minuscule deeltjes ijzer toegevoegd?", 
+         "answer": [ 
+            "Nee",            
+         ], 
+         "answercorrect": "Ja." 
+}, 
+{
+"question": "Voordat het gezuiverde water van de bron naar de kraan is, heeft het water er hoeveel dagen over gedaan?", 
+         "answer": [ 
+            "19 dagen.", 
+            "365 dagen" 
+         ], 
+         "answercorrect": "153 dagen."
+}
+]
+}
 
  
 

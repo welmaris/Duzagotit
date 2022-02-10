@@ -7,7 +7,7 @@ var player_exists = false
 
 func _ready():
 #	Call method to place minigames]
-	var minigame_names = ["washing_machine"]
+	var minigame_names = ["washing_machine","shower"]
 	spawn_minigames(minigame_names)
 
 func spawn_minigames(minigame_names: Array):
@@ -22,6 +22,8 @@ func spawn_minigames(minigame_names: Array):
 		
 		if name == "washing_machine":
 			mini_washing(furn)
+		if name == "shower":
+			mini_shower(furn)
 			
 		add_child(furn)
 		move_child(furn,furn.get_index() - 1)
@@ -38,4 +40,23 @@ func mini_washing(furn):
 	furn.get_node("CollisionShape2D").scale = Vector2(0.8,0.5)
 	furn.get_node("Area2D").get_node("InteractionSpace").position = Vector2(20,10)
 	furn.get_node("Area2D").get_node("InteractionSpace").scale = Vector2(0.5,1)
+
+func mini_shower(furn):
+	furn.position = Vector2(1405,210)
+	furn.scale = Vector2(1.5,1.5)
+	furn.get_node("TextureRect").texture = load("res://Art/Images/pixel_shower.png")
+	furn.get_node("TextureRect").get_node("Outline").texture = load("res://Art/Images/pixel_shower.png")
+	furn.get_node("TextureRect").get_node("Outline").margin_left = -2
+	furn.get_node("TextureRect").get_node("Outline").margin_top = -2
+#	add collision
+	furn.get_node("CollisionShape2D").position = Vector2(30,60)
+	furn.get_node("CollisionShape2D").scale = Vector2(1,1)
+	furn.get_node("Area2D").get_node("InteractionSpace").position = Vector2(20,10)
+	furn.get_node("Area2D").get_node("InteractionSpace").scale = Vector2(1,2)
 	
+func _on_Area2D_body_entered(body):
+	if !player_exists:
+		player_exists = true
+	else:
+		#print("testing")
+		get_parent().goto_house_select()

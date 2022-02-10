@@ -4,11 +4,16 @@ signal correct
 signal wrong
 
 var correct = false;
+var pressed_once = false
 
 func _on_TB0_pressed():
-	correct = true
-	emit_signal("correct")
+	if !pressed_once:
+		pressed_once = true
+		correct = true
+		emit_signal("correct")
 
 func _on_TB1_pressed():
-	emit_signal("wrong")
+	if !pressed_once:
+		pressed_once = true
+		emit_signal("wrong")
 

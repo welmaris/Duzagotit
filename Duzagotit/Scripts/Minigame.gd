@@ -59,6 +59,12 @@ func _ready():
 	if minigame_name == "solar":
 		spawn_solar()
 		$Explanation.text = "Plaats de zonnepanelen op het dak"
+	if minigame_name == "washing_machine":
+		spawn_washing()
+		$Explanation.text = "Welke wasmachine kunnen je ouders het beste kopen?"
+	if minigame_name == "shower":
+		spawn_shower()
+		$Explanation.text = "Zet de douche uit om water te besparen"
 
 # Minigame finished succesfully
 func minigame_done(_wrong = 0):
@@ -211,6 +217,10 @@ func spawn_lamp():
 	lamp.connect("finished", self, "lamp_off")
 	add_child(lamp)
 
+func spawn_shower():
+	var knob = Turning.instance()
+	knob.get_node("Sprite").texture = load("")
+
 func spawn_thermostat():
 	thermostat = Teddy.instance()
 	thermostat.get_node("Bear").texture = load("res://Art/Images/thermostat.png")
@@ -234,9 +244,22 @@ func update_temperature(rotation):
 
 func spawn_fridge():
 	var fridge = Fridge.instance()
+	fridge.get_node("TB0").set_normal_texture(load("res://Art/Images/FridgeAAA.png"))
+	fridge.get_node("TB1").set_normal_texture(load("res://Art/Images/FridgeD.png"))
 	fridge.connect("wrong", self, "fridge_wrong")
 	fridge.connect("correct", self, "fridge_correct")
 	add_child(fridge)
+
+
+func spawn_washing():
+	var washingmachine = Fridge.instance()
+	washingmachine.get_node("TB0").set_normal_texture(load("res://Art/Images/FridgeAAA.png"))
+	washingmachine.get_node("TB1").set_normal_texture(load("res://Art/Images/FridgeD.png"))
+	washingmachine.connect("wrong", self, "fridge_wrong")
+	washingmachine.connect("correct", self, "fridge_correct")
+	add_child(washingmachine)
+	
+	
 	
 func spawn_solar():
 	var roof = Teddy.instance()
