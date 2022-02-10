@@ -75,6 +75,8 @@ func _on_QuestionSpawnTimer_timeout(): # spawns a question bubble for the player
 		QB.category = "waste"
 	if housenumber == 2:
 		QB.category = "electricity"
+	if housenumber == 3:
+		QB.category = "water"
 
 # questions mc
 func answer_pressed(buttonint):

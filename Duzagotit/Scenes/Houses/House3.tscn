@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/Houses/TileMaps/TilemapFloor.tres" type="TileSet" id=1]
 [ext_resource path="res://Art/Schilden/Zeepaard.png" type="Texture" id=2]
@@ -6,9 +6,13 @@
 [ext_resource path="res://Scenes/Houses/TileMaps/TilemapFurniture.tres" type="TileSet" id=4]
 [ext_resource path="res://Scenes/Houses/TileMaps/TilemapStairs.tres" type="TileSet" id=5]
 [ext_resource path="res://Scripts/House3.gd" type="Script" id=6]
+[ext_resource path="res://Scenes/Minigame.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Furniture.tscn" type="PackedScene" id=8]
 
 [node name="House3" type="Node2D"]
 script = ExtResource( 6 )
+Minigame = ExtResource( 7 )
+Furniture = ExtResource( 8 )
 
 [node name="Floors" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -33,7 +37,7 @@ scale = Vector2( 1.5, 1.5 )
 tile_set = ExtResource( 4 )
 cell_size = Vector2( 8, 8 )
 format = 1
-tile_data = PoolIntArray( 1048693, 142, 0, 1114154, 84, 0, 1114160, 84, 0, 1114175, 84, 0, 1114181, 84, 0, 1179726, 107, 0, 1179751, 151, 0, 1376347, 78, 0, 1441845, 82, 0, 1441893, 150, 0, 1507371, 94, 0, 1769573, 60, 0, 1835087, 198, 0, 2162809, 147, 0, 3211306, 87, 0, 3211333, 87, 0, 3211347, 104, 0, 3211379, 88, 0, 3407927, 118, 0, 3407944, 121, 0, 3473448, 15, 0, 3473528, 14, 0, 3604571, 66, 0, 3604579, 70, 0, 3604587, 67, 0, 4128820, 93, 0, 4456560, 43, 0, 4456568, 44, 0, 4522099, 58, 0, 4587573, 46, 0, 4587576, 46, 0, 4587579, 46, 0, 4718704, 43, 0, 4718712, 44, 0 )
+tile_data = PoolIntArray( 1048693, 142, 0, 1114154, 84, 0, 1114160, 84, 0, 1114175, 84, 0, 1114181, 84, 0, 1179726, 107, 0, 1179751, 151, 0, 1441845, 82, 0, 1441893, 150, 0, 1507371, 94, 0, 1769573, 60, 0, 1835087, 198, 0, 2162809, 147, 0, 3211306, 87, 0, 3211333, 87, 0, 3211347, 104, 0, 3211379, 88, 0, 3407927, 118, 0, 3407944, 121, 0, 3473448, 15, 0, 3473528, 14, 0, 3604571, 66, 0, 3604579, 70, 0, 3604587, 67, 0, 4128820, 93, 0, 4456560, 43, 0, 4456568, 44, 0, 4522099, 58, 0, 4587573, 46, 0, 4587576, 46, 0, 4587579, 46, 0, 4718704, 43, 0, 4718712, 44, 0 )
 
 [node name="Furniture_Small" type="TileMap" parent="."]
 scale = Vector2( 1.5, 1.5 )

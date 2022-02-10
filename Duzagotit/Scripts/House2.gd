@@ -109,5 +109,5 @@ func _on_Area2D_body_entered(body):
 	if !player_exists:
 		player_exists = true
 	else:
-		print("testing")
+		#print("testing")
 		get_parent().goto_house_select()

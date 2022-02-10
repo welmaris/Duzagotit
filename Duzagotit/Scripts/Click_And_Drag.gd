@@ -53,7 +53,7 @@ func _process(delta):
 
 
 func _on_Click_input_event(viewport, event, shape_idx):
-	print("something")
+	#print("something")
 	if(event is InputEventMouseButton):
 		if can_drag:
 			dragging = true
